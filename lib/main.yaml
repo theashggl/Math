@@ -1,0 +1,5 @@
+name: Github actions for my app
+
+on: [push]
+
+jobs:

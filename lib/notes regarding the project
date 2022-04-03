@@ -1,0 +1,52 @@
+1) The page that opens after floating action button, needs padding from all sides and the numerical input needs to be made smaller.
+@todo
+2) The buttons need a better ui on the home page
+3) The replay icon needs refurbishing so as to look like a replay button, not refresh button.
+
+github actions to use
+https://github.com/marketplace/actions/dart-flutter-package-analyzer
+https://github.com/marketplace/actions/labeler (use it later)
+
+whole list of actions
+https://github.com/sdras/awesome-actions
+
+My opinion of Things to mind in a Flutter project-:
+1) Linting
+2) Single Responsibility for widgets
+3) CI/CD implementation through github actions.
+4) Testing
+5) Github syncing of project.
+Same from the expert's opinion can be found here - https://www.youtube.com/watch?v=bn5e95b3uLY
+
+
+It is  recommended to deploy ci/cd locally before migrating to cloud platform
+
+The sdlc model to use into the project-:
+Agile for now.
+Agile method -
+ 1) Requirement
+ 2) design
+ 3) development
+ 4) testing
+ 5) deployment
+ 6) review
+ 7) back to step 1
+
+Try different services for push notifications like onesignal.
+
+Custom Code writing style used-:
+1) Use the methods for the functionality of widgets in a different file named name of
+   widgetfile_functionalities.dart for the file named widgetfile.dart
+   which will have the test file named widgetfile_testnametest.dart.
+2) Class names for the functionalities of the widget file will be ClassNameWithTheUIFunctionalities.
+3) File name for the functionalities file will be file_name_of_ui_file_functionality.dart
+4) MVVM design is used which is-:
+ui<=>modelview<=>data
+ui - is the interface
+model view - is the intermediary which responds to the data changes
+data - part is the actual data of the app.
+
+The steps to build the app
+design and get the ui ready and then work on getting the things perfect.
+
+https://medium.com/nerd-for-tech/unit-testing-streams-in-dart-flutter-6ed72c19f761

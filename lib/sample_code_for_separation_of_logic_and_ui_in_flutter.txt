@@ -1,0 +1,159 @@
+// ignore: file_names
+// ignore: file_names
+
+// ignore_for_file: file_names, avoid_positional_boolean_parameters
+
+/**********This is a sample class with some separation of logic and ui*********/
+
+
+
+//UI class
+class NewAccountComponent extends StatelessWidget {
+  final NewAccountComponentLogic logic = NewAccountComponentLogic();
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Enter a Unique Account Number'),
+      titlePadding: EdgeInsets.all(20.0),
+      content: TextFormField(
+        controller: logic.controller,
+        onPressed: () => logic.clearTextFormField(),
+      ),
+    );
+  }
+}
+//logic
+class NewAccountComponentLogic {
+  static String accountNumber;
+  static bool existsAccountNumber;
+  TextEditingController controller = TextEditingController();
+  clearTextFormField() {
+    controller.text = '';
+    accountNumber = '';
+  }
+}
+
+
+
+
+
+//even improved ui
+class NewAccountComponent extends StatelessWidget {
+  final NewAccountComponentLogic logic = NewAccountComponentLogic(
+    '123456',
+    true,
+    TextEditingController(),
+  );
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Enter a Unique Account Number'),
+      titlePadding: EdgeInsets.all(20.0),
+      content: TextFormField(
+        controller: logic.controller,
+      ),
+      actions: <Widget>[
+        TextButton(
+          child: Text('Done'),
+          onPressed: () {
+            print(logic.controller.text);
+            logic.clearTextFormField();
+          },
+        ),
+      ],
+    );
+  }
+}
+//improved logic
+class NewAccountComponentLogic {
+  String accountNumber;
+  bool existsAccountNumber;
+  TextEditingController controller;
+  NewAccountComponentLogic(
+      this.accountNumber,
+      this.existsAccountNumber,
+      this.controller,
+      );
+
+  void clearTextFormField() {
+    controller.text = '';
+    accountNumber = '';
+  }
+}
+
+
+ String _value1;
+  String _value2;
+
+  final List<String> nameList = <String>[
+    "Name1",
+    "Name2",
+    "Name3",
+    "Name4",
+    "Name5",
+    "Name6",
+    "Name7",
+    "Name8"
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 2.0,
+        title: Text('Hello'),
+      ),
+      body:  ListView(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text('Name: '),
+                  Center(
+                    child: DropdownButton(
+                      value: _value1,
+                      onChanged: (value) {
+                        setState(() {
+                          _value1 = value;
+                        });
+                      },
+                      items: nameList.map(
+                        (item) {
+                          return DropdownMenuItem(
+                            value: item,
+                            child: new Text(item),
+                          );
+                        },
+                      ).toList(),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Text('Name: '),
+                  Center(
+                    child: DropdownButton(
+                      value: _value2,
+                      onChanged: (value) {
+                        setState(() {
+                          _value2 = value;
+                        });
+                      },
+                      items: nameList.map(
+                        (item) {
+                          return DropdownMenuItem(
+                            value: item,
+                            child: new Text(item),
+                          );
+                        },
+                      ).toList(),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+      backgroundColor: Colors.grey[200],
+    );
+  }
+}
