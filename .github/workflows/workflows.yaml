@@ -26,7 +26,6 @@ jobs:
         with:
           channel: 'beta' # 'dev', 'alpha', default to: 'stable'
           flutter-version: '2.5.x' # you can also specify exact version of flutter
-          distribution: 'temurin'
 
       # Get flutter dependencies.
       - run: flutter pub get
