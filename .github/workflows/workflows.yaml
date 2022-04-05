@@ -19,6 +19,7 @@ jobs:
       - uses: actions/checkout@v3 #Predefined action on the marketplace to use checkout a repository in the github action
       - uses: actions/setup-java@v2 #Predefined action on the marketplace to use java for hte action
         with:
+          distribution: 'temurin'
           java-version: '17' #specifying the latest java through this command
 
       # Setup the flutter environment.

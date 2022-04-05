@@ -1,0 +1,487 @@
+Microsoft Windows [Version 10.0.19044.1620]
+(c) Microsoft Corporation. All rights reserved.
+D:\APPS\My_android_apps\New math app>flutter format
+No files specified to be formatted.
+Idiomatically format Dart source code.
+Usage: dart format [options...] <files or directories...>
+-h, --help                     Print this usage information.
+-v, --verbose                  Show all options and flags with --help.
+-o, --output                   Set where to write formatted output.
+          [json]               Print code and selection as JSON.
+          [none]               Discard output.
+          [show]               Print code to terminal.
+          [write] (default)    Overwrite formatted files on disk.
+
+    --set-exit-if-changed      Return exit code 1 if there are any formatting changes.
+    --fix                      Apply all style fixes.
+-l, --line-length              Wrap lines longer than this.
+                               (defaults to "80")
+
+Run "dart help" to see global options.
+
+D:\APPS\My_android_apps\New math app>git innit
+git: 'innit' is not a git command. See 'git --help'.
+
+The most similar command is
+        init
+
+D:\APPS\My_android_apps\New math app>git init
+Initialized empty Git repository in D:/APPS/My_android_apps/New math app/.git/
+
+D:\APPS\My_android_apps\New math app>git log
+fatal: your current branch 'master' does not have any commits yet
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+        .metadata
+        README.md
+        analysis_options.yaml
+        android/
+        integration_test/
+        ios/
+        lib/
+        pubspec.lock
+        pubspec.yaml
+        test/
+        test_driver/
+        web/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+D:\APPS\My_android_apps\New math app>git config --global --edit
+
+D:\APPS\My_android_apps\New math app>git config --global --edit
+
+D:\APPS\My_android_apps\New math app>ls
+'ls' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\APPS\My_android_apps\New math app>ls
+'ls' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\APPS\My_android_apps\New math app>dir
+ Volume in drive D is DATA
+ Volume Serial Number is F26F-BF11
+
+ Directory of D:\APPS\My_android_apps\New math app
+
+04/03/2022  12:52 PM    <DIR>          .
+04/03/2022  12:52 PM    <DIR>          ..
+03/22/2022  11:44 PM    <DIR>          .dart_tool
+03/27/2022  03:48 PM               135 .flutter-plugins
+03/27/2022  03:48 PM               507 .flutter-plugins-dependencies
+04/03/2022  12:52 PM               854 .gitignore
+04/03/2022  12:15 PM    <DIR>          .idea
+12/29/2021  06:32 PM               315 .metadata
+03/27/2022  11:25 AM             3,504 .packages
+02/05/2022  11:57 PM             2,560 analysis_options.yaml
+03/22/2022  11:43 PM    <DIR>          android
+03/27/2022  01:25 PM    <DIR>          build
+03/27/2022  04:37 PM    <DIR>          integration_test
+12/29/2021  06:32 PM    <DIR>          ios
+04/02/2022  11:35 PM    <DIR>          lib
+03/23/2022  11:27 PM             1,000 new_math_app.iml
+03/27/2022  11:25 AM             5,842 pubspec.lock
+03/22/2022  08:40 PM               604 pubspec.yaml
+12/29/2021  06:32 PM               558 README.md
+03/27/2022  04:37 PM    <DIR>          test
+03/25/2022  12:22 AM    <DIR>          test_driver
+12/29/2021  06:32 PM    <DIR>          web
+              10 File(s)         15,879 bytes
+              12 Dir(s)  183,466,336,256 bytes free
+
+D:\APPS\My_android_apps\New math app>dir/?
+Displays a list of files and subdirectories in a directory.
+
+DIR [drive:][path][filename] [/A[[:]attributes]] [/B] [/C] [/D] [/L] [/N]
+  [/O[[:]sortorder]] [/P] [/Q] [/R] [/S] [/T[[:]timefield]] [/W] [/X] [/4]
+
+  [drive:][path][filename]
+              Specifies drive, directory, and/or files to list.
+
+  /A          Displays files with specified attributes.
+  attributes   D  Directories                R  Read-only files
+               H  Hidden files               A  Files ready for archiving
+               S  System files               I  Not content indexed files
+               L  Reparse Points             O  Offline files
+               -  Prefix meaning not
+  /B          Uses bare format (no heading information or summary).
+  /C          Display the thousand separator in file sizes.  This is the
+              default.  Use /-C to disable display of separator.
+  /D          Same as wide but files are list sorted by column.
+  /L          Uses lowercase.
+  /N          New long list format where filenames are on the far right.
+  /O          List by files in sorted order.
+  sortorder    N  By name (alphabetic)       S  By size (smallest first)
+               E  By extension (alphabetic)  D  By date/time (oldest first)
+               G  Group directories first    -  Prefix to reverse order
+  /P          Pauses after each screenful of information.
+  /Q          Display the owner of the file.
+  /R          Display alternate data streams of the file.
+  /S          Displays files in specified directory and all subdirectories.
+  /T          Controls which time field displayed or used for sorting
+  timefield   C  Creation
+              A  Last Access
+              W  Last Written
+  /W          Uses wide list format.
+  /X          This displays the short names generated for non-8dot3 file
+              names.  The format is that of /N with the short name inserted
+              before the long name. If no short name is present, blanks are
+              displayed in its place.
+  /4          Displays four-digit years
+
+Switches may be preset in the DIRCMD environment variable.  Override
+preset switches by prefixing any switch with - (hyphen)--for example, /-W.
+
+D:\APPS\My_android_apps\New math app>dir/H
+Invalid switch - "H".
+
+D:\APPS\My_android_apps\New math app>dir/A/H
+Invalid switch - "H".
+
+D:\APPS\My_android_apps\New math app>dir/A:H
+ Volume in drive D is DATA
+ Volume Serial Number is F26F-BF11
+
+ Directory of D:\APPS\My_android_apps\New math app
+
+04/03/2022  12:49 PM    <DIR>          .git
+               0 File(s)              0 bytes
+               1 Dir(s)  183,466,336,256 bytes free
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+        .metadata
+        README.md
+        analysis_options.yaml
+        android/
+        integration_test/
+        ios/
+        lib/
+        pubspec.lock
+        pubspec.yaml
+        test/
+        test_driver/
+        web/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+D:\APPS\My_android_apps\New math app>git add .
+warning: LF will be replaced by CRLF in pubspec.lock.
+The file will have its original line endings in your working directory
+
+D:\APPS\My_android_apps\New math app>git commit -m "Initial commit ever for the app"
+[master (root-commit) 61e4920] Initial commit ever for the app
+ 85 files changed, 2607 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 .metadata
+ create mode 100644 README.md
+ create mode 100644 analysis_options.yaml
+ create mode 100644 android/.gitignore
+ create mode 100644 android/app/build.gradle
+ create mode 100644 android/app/src/debug/AndroidManifest.xml
+ create mode 100644 android/app/src/main/AndroidManifest.xml
+ create mode 100644 android/app/src/main/kotlin/com/example/new_math_app/new_math_app/MainActivity.kt
+ create mode 100644 android/app/src/main/res/drawable-v21/launch_background.xml
+ create mode 100644 android/app/src/main/res/drawable/launch_background.xml
+ create mode 100644 android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+ create mode 100644 android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+ create mode 100644 android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+ create mode 100644 android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+ create mode 100644 android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+ create mode 100644 android/app/src/main/res/values-night/styles.xml
+ create mode 100644 android/app/src/main/res/values/styles.xml
+ create mode 100644 android/app/src/profile/AndroidManifest.xml
+ create mode 100644 android/build.gradle
+ create mode 100644 android/gradle.properties
+ create mode 100644 android/gradle/wrapper/gradle-wrapper.properties
+ create mode 100644 android/settings.gradle
+ create mode 100644 integration_test/new_math_test.dart
+ create mode 100644 ios/.gitignore
+ create mode 100644 ios/Flutter/AppFrameworkInfo.plist
+ create mode 100644 ios/Flutter/Debug.xcconfig
+ create mode 100644 ios/Flutter/Release.xcconfig
+ create mode 100644 ios/Runner.xcodeproj/project.pbxproj
+ create mode 100644 ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+ create mode 100644 ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+ create mode 100644 ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+ create mode 100644 ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme
+ create mode 100644 ios/Runner.xcworkspace/contents.xcworkspacedata
+ create mode 100644 ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+ create mode 100644 ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+ create mode 100644 ios/Runner/AppDelegate.swift
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json
+ create mode 100644 ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png
+ create mode 100644 ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png
+ create mode 100644 ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md
+ create mode 100644 ios/Runner/Base.lproj/LaunchScreen.storyboard
+ create mode 100644 ios/Runner/Base.lproj/Main.storyboard
+ create mode 100644 ios/Runner/Info.plist
+ create mode 100644 ios/Runner/Runner-Bridging-Header.h
+ create mode 100644 lib/Data/counter_event.dart
+ create mode 100644 lib/Data/drop_down_event.dart
+ create mode 100644 lib/Models/counter_bloc.dart
+ create mode 100644 lib/Models/drop_down_value_bloc.dart
+ create mode 100644 lib/Models/home_page_functionality.dart
+ create mode 100644 lib/UI/home_page.dart
+ create mode 100644 lib/main.dart
+ create mode 100644 lib/main.yaml
+ create mode 100644 lib/notes regarding the project
+ create mode 100644 lib/sample_code_for_separation_of_logic_and_ui_in_flutter.txt
+ create mode 100644 lib/workflows.yaml
+ create mode 100644 pubspec.lock
+ create mode 100644 pubspec.yaml
+ create mode 100644 test/Widget tests/home_page_test.dart
+ create mode 100644 test/drop_down_value_bloc_test.dart
+ create mode 100644 test_driver/integration_test.dart
+ create mode 100644 web/favicon.png
+ create mode 100644 web/icons/Icon-192.png
+ create mode 100644 web/icons/Icon-512.png
+ create mode 100644 web/icons/Icon-maskable-192.png
+ create mode 100644 web/icons/Icon-maskable-512.png
+ create mode 100644 web/index.html
+ create mode 100644 web/manifest.json
+
+D:\APPS\My_android_apps\New math app>git log
+commit 61e492005d8a9514ef404f13c34bc958d64da01a (HEAD -> master)
+Author: Aayush Sahay <asstore3@gmail.com>
+Date:   Sun Apr 3 14:33:32 2022 +0530
+
+    Initial commit ever for the app
+
+D:\APPS\My_android_apps\New math app>git remote add origin https://github.com/theashggl/Math.git
+
+D:\APPS\My_android_apps\New math app>
+D:\APPS\My_android_apps\New math app>git branch -M master
+
+D:\APPS\My_android_apps\New math app>git push -u origin master
+info: please complete authentication in your browser...
+Enumerating objects: 124, done.
+Counting objects: 100% (124/124), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (100/100), done.
+Writing objects: 100% (124/124), 98.91 KiB | 1.98 MiB/s, done.
+Total 124 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), done.
+To https://github.com/theashggl/Math.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
+
+D:\APPS\My_android_apps\New math app>git log
+commit 61e492005d8a9514ef404f13c34bc958d64da01a (HEAD -> master, origin/master)
+Author: Aayush Sahay <asstore3@gmail.com>
+Date:   Sun Apr 3 14:33:32 2022 +0530
+
+:...skipping...
+commit 61e492005d8a9514ef404f13c34bc958d64da01a (HEAD -> master, origin/master)
+Author: Aayush Sahay <asstore3@gmail.com>
+Date:   Sun Apr 3 14:33:32 2022 +0530
+
+    Initial commit ever for the app
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)...skipping...
+commit 61e492005d8a9514ef404f13c34bc958d64da01a (HEAD -> master, origin/master)
+Author: Aayush Sahay <asstore3@gmail.com>
+Date:   Sun Apr 3 14:33:32 2022 +0530
+
+    Initial commit ever for the app
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)...skipping...
+commit 61e492005d8a9514ef404f13c34bc958d64da01a (HEAD -> master, origin/master)
+Author: Aayush Sahay <asstore3@gmail.com>
+Date:   Sun Apr 3 14:33:32 2022 +0530
+
+    Initial commit ever for the app
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+
+D:\APPS\My_android_apps\New math app>git log
+commit 61e492005d8a9514ef404f13c34bc958d64da01a (HEAD -> master, origin/master)
+Author: Aayush Sahay <asstore3@gmail.com>
+Date:   Sun Apr 3 14:33:32 2022 +0530
+
+    Initial commit ever for the app
+
+D:\APPS\My_android_apps\New math app>git log
+commit 61e492005d8a9514ef404f13c34bc958d64da01a (HEAD -> master, origin/master)
+Author: Aayush Sahay <asstore3@gmail.com>
+Date:   Sun Apr 3 14:33:32 2022 +0530
+
+    Initial commit ever for the app
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    lib/workflows.yaml -> .github/workflows.yaml
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   lib/notes regarding the project
+
+
+D:\APPS\My_android_apps\New math app>git add .
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    lib/workflows.yaml -> .github/workflows.yaml
+        modified:   lib/notes regarding the project
+
+
+D:\APPS\My_android_apps\New math app>git commit -m "Added workflows file correctly"
+[master d185fb2] Added workflows file correctly
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+ rename {lib => .github}/workflows.yaml (100%)
+
+D:\APPS\My_android_apps\New math app>git push -u origin master
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 847 bytes | 423.00 KiB/s, done.
+Total 5 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To https://github.com/theashggl/Math.git
+   61e4920..d185fb2  master -> master
+branch 'master' set up to track 'origin/master'.
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    .github/workflows.yaml -> .github/workflows/workflows.yaml
+
+
+D:\APPS\My_android_apps\New math app>git add .
+
+D:\APPS\My_android_apps\New math app>git commit -m "Corrected last commit's fault of wrong workflow file directory"
+[master cb28438] Corrected last commit's fault of wrong workflow file directory
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename .github/{ => workflows}/workflows.yaml (100%)
+
+D:\APPS\My_android_apps\New math app>git push -u origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 343 bytes | 343.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/theashggl/Math.git
+   d185fb2..cb28438  master -> master
+branch 'master' set up to track 'origin/master'.
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .github/workflows/workflows.yaml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+D:\APPS\My_android_apps\New math app>git add .
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   .github/workflows/workflows.yaml
+
+
+D:\APPS\My_android_apps\New math app>git commit -m "Corrected workflow file syntax "
+[master 22e0b94] Corrected workflow file syntax
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+D:\APPS\My_android_apps\New math app>git push -u origin master
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (5/5), 414 bytes | 207.00 KiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/theashggl/Math.git
+   cb28438..22e0b94  master -> master
+branch 'master' set up to track 'origin/master'.
+
+D:\APPS\My_android_apps\New math app>history >> history.txt
+'history' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\APPS\My_android_apps\New math app>
