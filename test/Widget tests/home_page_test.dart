@@ -13,9 +13,13 @@ void main() {
   testWidgets('Material App Widget test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     final materialApp = find.byKey(const ValueKey('StartGame'));
-    final floatingActionButton = find.byKey(const ValueKey('HomePageFloatingActionButton'));
+    final floatingActionButton =
+        find.byKey(const ValueKey('HomePageFloatingActionButton'));
     // Verify that our counter starts at 0.
-    await tester.pumpWidget(const MaterialApp(home: MyHomePage(title: 'Flutter Demo Home Page',)));
+    await tester.pumpWidget(const MaterialApp(
+        home: MyHomePage(
+      title: 'Flutter Demo Home Page',
+    )));
     // await tester.pump();
     // expect(find.text('Digits:'), findsOneWidget);
     expect(materialApp, findsOneWidget);
@@ -23,7 +27,7 @@ void main() {
     expect(find.text('Replay'), findsOneWidget);
     expect(find.byIcon(Icons.wifi_protected_setup), findsOneWidget);
     expect(find.text('Check'), findsOneWidget);
-    expect(find.byIcon(Icons.add),findsOneWidget);
+    expect(find.byIcon(Icons.add), findsOneWidget);
     expect(find.text('1'), findsNothing);
     //
     // // Tap the '+' icon and trigger a frame.

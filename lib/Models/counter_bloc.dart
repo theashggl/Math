@@ -20,11 +20,10 @@ class CounterBloc {
 
   void _mapEventToState(CounterEvent event) {
     if (event is RandomEvent) {
-      _counter=event.value;
-    } else if(event is IncrementEvent) {
+      _counter = event.value;
+    } else if (event is IncrementEvent) {
       _counter++;
-    }
-    else {
+    } else {
       _counter--;
     }
     _inCounter.add(_counter);

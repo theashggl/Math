@@ -1,8 +1,8 @@
 class MyHomePageStateFunctionality {
   int _answer;
 
-  MyHomePageStateFunctionality(){
-    answer=0;
+  MyHomePageStateFunctionality() {
+    answer = 0;
   }
 
   int get getAnswer => _answer;
@@ -10,6 +10,7 @@ class MyHomePageStateFunctionality {
   set answer(int value) {
     _answer = value;
   }
+
   //Methods containing the logic of the functionality aiding in the functionality directly
 //ToDo Create tests for the below two methods in the next push/commit
   int listGeneration(int dropdownValue, int lengthOfListOrRoundOfGame) {
