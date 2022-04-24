@@ -56,7 +56,7 @@ A sub branch to the working branch with the name as <workingbranchname,workflows
 The main branch will only contain the stable and features versions.
 
 My understanding about git/github till now-:
-For every commit we need to push to the respective branch (no automatic fix is foung yet).
+For every commit we need to push to the respective branch (no automatic fix is foung yet). Or all commits can be pushed with( git push --all -u) so that the branches and commit are copied as it is on github and an upstream is set for the branches.
 After the fix is done, we need to merge the branches but for that we need to run the query "git switch <branch where to merge the other branch>" and then "git merge <branch which will be merged>". and then we delete the branch merged by running git branch -d <merged branch name>.
 But this works only for git, for github we need to create a pull request in github and then merge the branch.
 The details can be found at this link https://www.youtube.com/watch?v=5g37NElQnCQ.
