@@ -11,9 +11,10 @@ jobs:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
-        if: always()
+
       # Setup Java environment in order to build the Android app.
       - uses: actions/checkout@v3 #Predefined action on the marketplace to use checkout a repository in the github action
+        if: always()
       - uses: actions/setup-java@v2 #Predefined action on the marketplace to use java for hte action
         with:
           distribution: 'temurin'
