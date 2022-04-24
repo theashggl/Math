@@ -43,13 +43,13 @@ jobs:
         if: always()
       - run: flutter test
 
-      # Build apk.
-        if: always()
-      - run: flutter build apk
-
-      # Upload generated apk to the artifacts.
-        if: always()
-      - uses: actions/upload-artifact@v1
-        with:
-          name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
+#      # Build apk.     Will need this workflow after the first working app is finished
+#        if: always()
+#      - run: flutter build apk
+#
+#      # Upload generated apk to the artifacts.
+#        if: always()
+#      - uses: actions/upload-artifact@v1
+#        with:
+#          name: release-apk
+#          path: build/app/outputs/apk/release/app-release.apk

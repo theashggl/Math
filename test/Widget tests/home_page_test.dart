@@ -38,7 +38,7 @@ void main() {
     // await tester.pump();
     //
     // // Verify that our counter has incremented.
-    // expect(find.text('0'), findsNothing);
+    expect(find.text('0'), findsOneWidget);
     // expect(find.text('1'), findsOneWidget);
     await tester.tap(floatingActionButton);
     await tester.pump();
