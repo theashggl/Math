@@ -485,3 +485,406 @@ D:\APPS\My_android_apps\New math app>history >> history.txt
 operable program or batch file.
 
 D:\APPS\My_android_apps\New math app>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<----------------As on 7 April------------------>
+Microsoft Windows [Version 10.0.19044.1620]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .github/workflows/workflows.yaml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+D:\APPS\My_android_apps\New math app>flutter format
+No files specified to be formatted.
+Idiomatically format Dart source code.
+
+Usage: dart format [options...] <files or directories...>
+-h, --help                     Print this usage information.
+-v, --verbose                  Show all options and flags with --help.
+-o, --output                   Set where to write formatted output.
+
+          [json]               Print code and selection as JSON.
+          [none]               Discard output.
+          [show]               Print code to terminal.
+          [write] (default)    Overwrite formatted files on disk.
+
+    --set-exit-if-changed      Return exit code 1 if there are any formatting changes.
+    --fix                      Apply all style fixes.
+-l, --line-length              Wrap lines longer than this.
+                               (defaults to "80")
+
+Run "dart help" to see global options.
+
+D:\APPS\My_android_apps\New math app>dart format
+Missing paths to code to format.
+
+Usage: dart format [options...] <files or directories...>
+-h, --help                     Print this usage information.
+-v, --verbose                  Show all options and flags with --help.
+-o, --output                   Set where to write formatted output.
+
+          [json]               Print code and selection as JSON.
+          [none]               Discard output.
+          [show]               Print code to terminal.
+          [write] (default)    Overwrite formatted files on disk.
+
+    --set-exit-if-changed      Return exit code 1 if there are any formatting changes.
+    --fix                      Apply all style fixes.
+-l, --line-length              Wrap lines longer than this.
+                               (defaults to "80")
+
+Run "dart help" to see global options.
+
+D:\APPS\My_android_apps\New math app>dart formatflutter upgrade
+Could not find a command named "formatflutter".
+
+Usage: dart <command|dart-file> [arguments]
+
+Global options:
+-h, --help                 Print this usage information.
+-v, --verbose              Show additional command output.
+    --version              Print the Dart SDK version.
+    --enable-analytics     Enable analytics.
+    --disable-analytics    Disable analytics.
+
+Available commands:
+  analyze   Analyze Dart code in a directory.
+  compile   Compile Dart to various formats.
+  create    Create a new Dart project.
+  fix       Apply automated fixes to Dart source code.
+  format    Idiomatically format Dart source code.
+  migrate   Perform null safety migration on a project.
+  pub       Work with packages.
+  run       Run a Dart program.
+  test      Run tests for a project.
+
+Run "dart help <command>" for more information about a command.
+See https://dart.dev/tools/dart-tool for detailed documentation.
+
+D:\APPS\My_android_apps\New math app>
+D:\APPS\My_android_apps\New math app>
+D:\APPS\My_android_apps\New math app>
+D:\APPS\My_android_apps\New math app>
+D:\APPS\My_android_apps\New math app>
+D:\APPS\My_android_apps\New math app>flutter upgrade
+Upgrading Flutter to 2.10.4 from 2.5.2 in C:\src\flutter...
+Checking Dart SDK version...
+Downloading Dart SDK from Flutter engine 57d3bac3dd5cb5b0e464ab70e7bc8a0d8cf083ab...
+Expanding downloaded archive...
+Building flutter tool...
+Running pub upgrade...
+
+Upgrading engine...
+Downloading android-arm-profile/windows-x64 tools...                5.8s
+Downloading android-arm-release/windows-x64 tools...             1,953ms
+Downloading android-arm64-profile/windows-x64 tools...           2,127ms
+Downloading android-arm64-release/windows-x64 tools...           1,449ms
+Downloading android-x64-profile/windows-x64 tools...             2,577ms
+Downloading android-x64-release/windows-x64 tools...             1,553ms
+Downloading android-x86 tools...                                    4.3s
+Downloading android-x64 tools...                                    3.2s
+Downloading android-arm tools...                                    3.2s
+Downloading android-arm-profile tools...                         1,610ms
+Downloading android-arm-release tools...                         1,040ms
+Downloading android-arm64 tools...                                  3.2s
+Downloading android-arm64-profile tools...                       1,650ms
+Downloading android-arm64-release tools...                       1,604ms
+Downloading android-x64-profile tools...                         1,828ms
+Downloading android-x64-release tools...                         1,354ms
+Downloading android-x86-jit-release tools...                     1,863ms
+Downloading Web SDK...                                              7.2s
+Downloading CanvasKit...                                            3.6s
+Downloading windows-x64/windows-x64-flutter tools...               16.1s
+Downloading windows-x64/flutter-cpp-client-wrapper tools...        253ms
+Downloading windows-x64-profile/windows-x64-flutter tools...        13.0s
+Downloading windows-x64-release/windows-x64-flutter tools...        20.3s
+
+Flutter 2.10.4 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision c860cba910 (12 days ago) • 2022-03-25 00:23:12 -0500
+Engine • revision 57d3bac3dd
+Tools • Dart 2.16.2 • DevTools 2.9.2
+
+Running flutter doctor...
+Doctor summary (to see all details, run flutter doctor -v):
+[√] Flutter (Channel stable, 2.10.4, on Microsoft Windows [Version 10.0.19044.1620], locale en-US)
+[√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
+[√] Chrome - develop for the web
+[X] Visual Studio - develop for Windows
+    X Visual Studio not installed; this is necessary for Windows development.
+      Download at https://visualstudio.microsoft.com/downloads/.
+      Please install the "Desktop development with C++" workload, including all of its default components
+[√] Android Studio (version 2021.1)
+[√] IntelliJ IDEA Ultimate Edition (version 2019.3)
+[√] VS Code, 64-bit edition (version 1.49.2)
+[√] Connected device (3 available)
+    ! Device WKMJ7LUKSCQSYPMF is not authorized.
+      You might need to check your device for an authorization dialog.
+[√] HTTP Host Availability
+
+! Doctor found issues in 1 category.
+
+D:\APPS\My_android_apps\New math app>flutter format
+No files specified to be formatted.
+Idiomatically format Dart source code.
+
+Usage: dart format [options...] <files or directories...>
+-h, --help                     Print this usage information.
+-v, --verbose                  Show all options and flags with --help.
+-o, --output                   Set where to write formatted output.
+
+          [json]               Print code and selection as JSON.
+          [none]               Discard output.
+          [show]               Print code to terminal.
+          [write] (default)    Overwrite formatted files on disk.
+
+    --set-exit-if-changed      Return exit code 1 if there are any formatting changes.
+    --fix                      Apply all style fixes.
+-l, --line-length              Wrap lines longer than this.
+                               (defaults to "80")
+
+Run "dart help" to see global options.
+
+D:\APPS\My_android_apps\New math app>flutter format --help
+Idiomatically format Dart source code.
+
+Usage: dart format [options...] <files or directories...>
+-h, --help                     Print this usage information.
+-v, --verbose                  Show all options and flags with --help.
+-o, --output                   Set where to write formatted output.
+
+          [json]               Print code and selection as JSON.
+          [none]               Discard output.
+          [show]               Print code to terminal.
+          [write] (default)    Overwrite formatted files on disk.
+
+    --set-exit-if-changed      Return exit code 1 if there are any formatting changes.
+    --fix                      Apply all style fixes.
+-l, --line-length              Wrap lines longer than this.
+                               (defaults to "80")
+
+Run "dart help" to see global options.
+
+D:\APPS\My_android_apps\New math app>flutter format -h --help
+Idiomatically format Dart source code.
+
+Usage: dart format [options...] <files or directories...>
+-h, --help                     Print this usage information.
+-v, --verbose                  Show all options and flags with --help.
+-o, --output                   Set where to write formatted output.
+
+          [json]               Print code and selection as JSON.
+          [none]               Discard output.
+          [show]               Print code to terminal.
+          [write] (default)    Overwrite formatted files on disk.
+
+    --set-exit-if-changed      Return exit code 1 if there are any formatting changes.
+    --fix                      Apply all style fixes.
+-l, --line-length              Wrap lines longer than this.
+                               (defaults to "80")
+
+Run "dart help" to see global options.
+
+D:\APPS\My_android_apps\New math app>flutter format -h
+Idiomatically format Dart source code.
+
+Usage: dart format [options...] <files or directories...>
+-h, --help                     Print this usage information.
+-v, --verbose                  Show all options and flags with --help.
+-o, --output                   Set where to write formatted output.
+
+          [json]               Print code and selection as JSON.
+          [none]               Discard output.
+          [show]               Print code to terminal.
+          [write] (default)    Overwrite formatted files on disk.
+
+    --set-exit-if-changed      Return exit code 1 if there are any formatting changes.
+    --fix                      Apply all style fixes.
+-l, --line-length              Wrap lines longer than this.
+                               (defaults to "80")
+
+Run "dart help" to see global options.
+
+D:\APPS\My_android_apps\New math app>dart help
+A command-line utility for Dart development.
+
+Usage: dart <command|dart-file> [arguments]
+
+Global options:
+-h, --help                 Print this usage information.
+-v, --verbose              Show additional command output.
+    --version              Print the Dart SDK version.
+    --enable-analytics     Enable analytics.
+    --disable-analytics    Disable analytics.
+
+Available commands:
+  analyze    Analyze Dart code in a directory.
+  compile    Compile Dart to various formats.
+  create     Create a new Dart project.
+  devtools   Open DevTools (optionally connecting to an existing application).
+  doc        Generate HTML API documentation from Dart documentation comments.
+  fix        Apply automated fixes to Dart source code.
+  format     Idiomatically format Dart source code.
+  migrate    Perform null safety migration on a project.
+  pub        Work with packages.
+  run        Run a Dart program.
+  test       Run tests for a project.
+
+Run "dart help <command>" for more information about a command.
+See https://dart.dev/tools/dart-tool for detailed documentation.
+
+D:\APPS\My_android_apps\New math app>flutter format .
+Formatted lib\Data\counter_event.dart
+Formatted lib\Data\drop_down_event.dart
+Formatted lib\Models\counter_bloc.dart
+Formatted lib\Models\home_page_functionality.dart
+Formatted test\Widget tests\home_page_test.dart
+Formatted test\drop_down_value_bloc_test.dart
+Formatted test_driver\integration_test.dart
+Formatted 12 files (7 changed) in 2.03 seconds.
+
+D:\APPS\My_android_apps\New math app>flutter format . --set-exit-if-changed
+Formatted 12 files (0 changed) in 0.75 seconds.
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .github/workflows/workflows.yaml
+        modified:   lib/Data/counter_event.dart
+        modified:   lib/Data/drop_down_event.dart
+        modified:   lib/Models/counter_bloc.dart
+        modified:   lib/Models/home_page_functionality.dart
+        modified:   test/Widget tests/home_page_test.dart
+        modified:   test/drop_down_value_bloc_test.dart
+        modified:   test_driver/integration_test.dart
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+D:\APPS\My_android_apps\New math app>git add .
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   .github/workflows/workflows.yaml
+        modified:   lib/Data/counter_event.dart
+        modified:   lib/Data/drop_down_event.dart
+        modified:   lib/Models/counter_bloc.dart
+        modified:   lib/Models/home_page_functionality.dart
+        modified:   test/Widget tests/home_page_test.dart
+        modified:   test/drop_down_value_bloc_test.dart
+        modified:   test_driver/integration_test.dart
+
+
+D:\APPS\My_android_apps\New math app>git commit -m "To check the format command in workflows"
+[master cad0830] To check the format command in workflows
+ 8 files changed, 19 insertions(+), 14 deletions(-)
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+D:\APPS\My_android_apps\New math app>git push -u origin master
+Enumerating objects: 34, done.
+Counting objects: 100% (34/34), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (18/18), 1.41 KiB | 361.00 KiB/s, done.
+Total 18 (delta 10), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (10/10), completed with 10 local objects.
+To https://github.com/theashggl/Math.git
+   2df36b0..cad0830  master -> master
+branch 'master' set up to track 'origin/master'.
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .github/workflows/workflows.yaml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+D:\APPS\My_android_apps\New math app>git add .
+
+D:\APPS\My_android_apps\New math app>git commit -m "Workflow edit"
+[master 7dfce5f] Workflow edit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+D:\APPS\My_android_apps\New math app>git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+D:\APPS\My_android_apps\New math app>git push -u origin master
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (5/5), 404 bytes | 101.00 KiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/theashggl/Math.git
+   cad0830..7dfce5f  master -> master
+branch 'master' set up to track 'origin/master'.
+
+D:\APPS\My_android_apps\New math app>flutter analyze
+Running "flutter pub get" in New math app...                       10.9s
+Analyzing New math app...
+
+   info - The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of
+          'package:flutter/material.dart' - integration_test\new_math_test.dart:1:8 - unnecessary_import
+   info - Avoid setters without getters - lib\Models\home_page_functionality.dart:10:7 - avoid_setters_without_getters
+warning - This function has a return type of 'int', but doesn't end with a return statement - lib\Models\home_page_functionality.dart:16:7 -
+       missing_return
+   info - The value of the local variable 'sum' isn't used - lib\Models\home_page_functionality.dart:18:9 - unused_local_variable
+   info - Prefer final for variable declarations if they are not reassigned - lib\Models\home_page_functionality.dart:19:9 - prefer_final_locals
+   info - The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of
+          'package:flutter/material.dart' - lib\UI\home_page.dart:2:8 - unnecessary_import
+   info - Avoid `print` calls in production code - lib\UI\home_page.dart:82:25 - avoid_print
+   info - Avoid `print` calls in production code - lib\UI\home_page.dart:117:25 - avoid_print
+warning - The parameter 'count' is required - lib\game_page.dart:9:13 - missing_required_param
+   info - The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of
+          'package:flutter/material.dart' - lib\main.dart:1:8 - unnecessary_import
+   info - Missing a required trailing comma - test\Widget tests\home_page_test.dart:22:6 - require_trailing_commas
+   info - Missing a required trailing comma - test\Widget tests\home_page_test.dart:22:7 - require_trailing_commas
+
+12 issues found. (ran in 39.0s)
+
+D:\APPS\My_android_apps\New math app>
