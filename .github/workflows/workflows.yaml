@@ -11,7 +11,7 @@ jobs:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
-
+        if: always()
       # Setup Java environment in order to build the Android app.
       - uses: actions/checkout@v3 #Predefined action on the marketplace to use checkout a repository in the github action
       - uses: actions/setup-java@v2 #Predefined action on the marketplace to use java for hte action
@@ -20,27 +20,34 @@ jobs:
           java-version: '17' #specifying the latest java through this command
 
       # Setup the flutter environment.
+        if: always()
       - uses: subosito/flutter-action@v2
         with:
           channel: 'beta' # 'dev', 'alpha', default to: 'stable'
           flutter-version: '2.5.x' # you can also specify exact version of flutter
 
       # Get flutter dependencies.
+        if: always()
       - run: flutter pub get
 
       # Check for any formatting issues in the code.
+        if: always()
       - run: flutter format . --set-exit-if-changed
 
       # Statically analyze the Dart code for any errors.
+        if: always()
       - run: flutter analyze
 
       # Run widget tests for our flutter project.
+        if: always()
       - run: flutter test
 
       # Build apk.
+        if: always()
       - run: flutter build apk
 
       # Upload generated apk to the artifacts.
+        if: always()
       - uses: actions/upload-artifact@v1
         with:
           name: release-apk
