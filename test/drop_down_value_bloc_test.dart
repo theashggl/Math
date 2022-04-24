@@ -12,7 +12,6 @@ void main() {
     //   DropdownMenuItem<String>
     // ];
     expect(output.length, 4);
-    expect(output.first.toString(), '1');
   });
   // test('Test for mappingToList method data', () {//Test not getting successful so removing for now
   //   final List dropDownListTest = [1, 2, 3, 4];

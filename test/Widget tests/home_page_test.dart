@@ -16,10 +16,13 @@ void main() {
     final floatingActionButton =
         find.byKey(const ValueKey('HomePageFloatingActionButton'));
     // Verify that our counter starts at 0.
-    await tester.pumpWidget(const MaterialApp(
+    await tester.pumpWidget(
+      const MaterialApp(
         home: MyHomePage(
-      title: 'Flutter Demo Home Page',
-    )));
+          title: 'Flutter Demo Home Page',
+        ),
+      ),
+    );
     // await tester.pump();
     // expect(find.text('Digits:'), findsOneWidget);
     expect(materialApp, findsOneWidget);
@@ -28,7 +31,7 @@ void main() {
     expect(find.byIcon(Icons.wifi_protected_setup), findsOneWidget);
     expect(find.text('Check'), findsOneWidget);
     expect(find.byIcon(Icons.add), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
     //
     // // Tap the '+' icon and trigger a frame.
     // await tester.tap(find.byIcon(Icons.add));
