@@ -51,7 +51,15 @@ design and get the ui ready and then work on getting the things perfect.
 
 https://medium.com/nerd-for-tech/unit-testing-streams-in-dart-flutter-6ed72c19f761
 
-There will be a head branch on which all the code will be worked on. The main branch will only contain he stable and features versions.
+There will be a head branch on which all the code will be worked on.
+A sub branch to the working branch with the name as <workingbranchname,workflows> will be followed for all branches to try the faulty workflows and fix them, after which the commit will finally be pushed to the working branch.
+The main branch will only contain the stable and features versions.
+
+My understanding about git/github till now-:
+For every commit we need to push to the respective branch (no automatic fix is foung yet). Or all commits can be pushed with( git push --all -u) so that the branches and commit are copied as it is on github and an upstream is set for the branches.
+After the fix is done, we need to merge the branches but for that we need to run the query "git switch <branch where to merge the other branch>" and then "git merge <branch which will be merged>". and then we delete the branch merged by running git branch -d <merged branch name>.
+But this works only for git, for github we need to create a pull request in github and then merge the branch.
+The details can be found at this link https://www.youtube.com/watch?v=5g37NElQnCQ.
 
 Getting a git warning during staging. Explanation -:
 In Unix systems the end of a line is represented with a line feed (LF). In windows a line is represented with a carriage return (CR) and a line feed (LF) thus (CRLF). when you get code from git that was uploaded from a unix system they will only have an LF.
