@@ -1,0 +1,6 @@
+1) The page that opens after floating action button, needs padding from all sides and the numerical input needs to be made smaller.
+@todo
+2) The buttons need a better ui on the home page
+3) The replay icon needs refurbishing so as to look like a replay button, not refresh button.
+4) Separate screen should be there solely for generating the numbers.
+5) Numbers display screen will automatically close after displaying the numbers. A back button will appear after some time if not closed.

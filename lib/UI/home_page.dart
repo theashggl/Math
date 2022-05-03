@@ -1,10 +1,11 @@
 import 'dart:math';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_apps/Data/counter_event.dart';
 import 'package:flutter_apps/Models/counter_bloc.dart';
 import 'package:flutter_apps/Models/drop_down_value_bloc.dart';
 import 'package:flutter_apps/Models/home_page_functionality.dart';
+import 'package:flutter_apps/Models/list_generation.dart';
+import 'package:flutter_apps/UI/number_display.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -26,8 +27,6 @@ class MyHomePage extends StatefulWidget {
   @override
   MyHomePageState createState() => MyHomePageState();
 }
-
-Random random = Random();
 
 class MyHomePageState extends State<MyHomePage> {
   MyHomePageStateFunctionality homePageModel = MyHomePageStateFunctionality();
@@ -94,6 +93,12 @@ class MyHomePageState extends State<MyHomePage> {
                         homePageModel.listGeneration(
                           int.parse(dropDownSnapshot.data),
                           counterSnapshot.data,
+                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NumberDisplay(),
+                          ),
                         );
                       },
                       child: const Text(
@@ -245,7 +250,7 @@ class MyHomePageState extends State<MyHomePage> {
                               ),
                               Row(
                                 children: [
-                                  const Text('ABC'),
+                                  const Text('Number of digits: '),
                                   const SizedBox(
                                     width: 40,
                                   ),

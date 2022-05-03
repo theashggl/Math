@@ -44,7 +44,7 @@ void main() {
     await tester.pump();
     expect(find.text('Number of Inputs '), findsOneWidget);
     expect(find.text('Enter the number of occurrences'), findsOneWidget);
-    expect(find.text('ABC'), findsOneWidget);
+    expect(find.text('Number of digits: '), findsOneWidget);
     expect(find.text('Submit'), findsOneWidget);
     expect(find.byIcon(Icons.arrow_downward), findsOneWidget);
     expect(find.byIcon(Icons.arrow_back_ios_rounded), findsOneWidget);

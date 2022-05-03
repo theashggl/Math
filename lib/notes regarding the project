@@ -1,8 +1,3 @@
-1) The page that opens after floating action button, needs padding from all sides and the numerical input needs to be made smaller.
-@todo
-2) The buttons need a better ui on the home page
-3) The replay icon needs refurbishing so as to look like a replay button, not refresh button.
-
 github actions to use
 https://github.com/marketplace/actions/dart-flutter-package-analyzer
 https://github.com/marketplace/actions/labeler (use it later)
@@ -34,7 +29,7 @@ Agile method -
 
 Try different services for push notifications like onesignal.
 
-Custom Code writing style used-:
+Custom Code-writing style used-:
 1) Use the methods for the functionality of widgets in a different file named name of
    widgetfile_functionalities.dart for the file named widgetfile.dart
    which will have the test file named widgetfile_testnametest.dart.

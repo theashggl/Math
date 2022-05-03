@@ -13,7 +13,7 @@ class MyHomePageStateFunctionality {
 
   //Methods containing the logic of the functionality aiding in the functionality directly
 //ToDo Create tests for the below two methods in the next push/commit
-  int listGeneration(int dropdownValue, int lengthOfListOrRoundOfGame) {
+  int listGeneration(int dropdownValue, int lengthOfListOrRoundsOfGame) {
 // gameNumbers = new List<int>.empty();
     int sum = 0;
     int temp = 1;
