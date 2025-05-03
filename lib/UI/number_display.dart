@@ -1,34 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_apps/Models/list_generation.dart';
+import 'package:flutter_apps/Data/inherited_widget_functionality.dart';
+import 'package:flutter_apps/Models/number_display_functionalities.dart';
 
+//This page will show the numbers on the screen once the user hits start on the home page
 class NumberDisplay extends StatelessWidget {
-  const NumberDisplay({Key key}) : super(key: key);
+  final MyState mystate;
+  const NumberDisplay({Key? key, required this.mystate}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: NumberScreen(),
+    return Scaffold(
+      body: NumberScreen(
+        counter: mystate.counter,
+        dropDownValue: mystate.dropDownValue,
+      ),
     );
   }
 }
 
 class NumberScreen extends StatefulWidget {
-  const NumberScreen({Key key}) : super(key: key);
+  final int? counter;
+  final String? dropDownValue;
+  const NumberScreen(
+      {required this.counter, required this.dropDownValue, Key? key,})
+      : super(key: key);
   @override
   _NumberScreenState createState() => _NumberScreenState();
 }
 
 class _NumberScreenState extends State<NumberScreen> {
-  GameListGeneration gameListGeneration = GameListGeneration();
+  late GameListGeneration gameListGeneration;
+
+  @override
+  void initState() {
+    super.initState();
+    print('object ${widget.counter}');
+    gameListGeneration = GameListGeneration(
+      counter: widget.counter,
+      dropdown: widget.dropDownValue,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: StreamBuilder(
-          stream: gameListGeneration.createData(),
-          builder: (context, snapshot) {
-            return Center(child: Text(snapshot.data.toString()));
-          },
-        ),
+      body: StreamBuilder(
+        stream: gameListGeneration.outputStream,
+        initialData: gameListGeneration.initialData,
+        builder: (context, snapshot) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  snapshot.data.toString(),
+                  style: const TextStyle(fontSize: 100,
+                  fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                ElevatedButton(
+                  child: const Text('Exit'),
+                  onPressed: () {
+                    print(snapshot.connectionState);
+                    gameListGeneration.elevatedButtonPress(context, snapshot);
+                  },
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

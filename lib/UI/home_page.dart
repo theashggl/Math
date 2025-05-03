@@ -1,43 +1,49 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_apps/Data/counter_event.dart';
 import 'package:flutter_apps/Models/counter_bloc.dart';
 import 'package:flutter_apps/Models/drop_down_value_bloc.dart';
 import 'package:flutter_apps/Models/home_page_functionality.dart';
-import 'package:flutter_apps/Models/list_generation.dart';
-import 'package:flutter_apps/UI/number_display.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Math App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'गणितज्ञ'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  final String title;
-  const MyHomePage({Key key, this.title}) : super(key: key);
+  final String? title;
+  const MyHomePage({Key? key, this.title}) : super(key: key);
 
   @override
   MyHomePageState createState() => MyHomePageState();
 }
 
 class MyHomePageState extends State<MyHomePage> {
-  MyHomePageStateFunctionality homePageModel = MyHomePageStateFunctionality();
-  DropDownValueBloc dropDownValueBloc = DropDownValueBloc();
-  CounterBloc counterBloc = CounterBloc();
-
+  late MyHomePageStateFunctionality homePageModel;
+  late DropDownValueBloc dropDownValueBloc;
+  late CounterBloc counterBloc;
+  bool initializer = false;
+  final GlobalKey<FormState> _globalFormKey = GlobalKey<FormState>();
+  final TextEditingController _textEditingController = TextEditingController();
+  bool _textFieldEnabled = false;
+  MyHomePageState() {
+    counterBloc = CounterBloc();
+    homePageModel = MyHomePageStateFunctionality();
+    dropDownValueBloc = DropDownValueBloc();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       body: Center(
         child: StreamBuilder(
@@ -45,15 +51,19 @@ class MyHomePageState extends State<MyHomePage> {
           initialData: '1',
           builder: (
             BuildContext dropDownContext,
-            AsyncSnapshot<String> dropDownSnapshot,
+            AsyncSnapshot<String?> dropDownSnapshot,
           ) {
             return StreamBuilder(
               stream: counterBloc.counter,
-              initialData: 0,
+              initialData: 1,
               builder: (
                 BuildContext counterContext,
                 AsyncSnapshot<int> counterSnapshot,
               ) {
+                homePageModel.submitGameState(
+                  counterSnapshot,
+                  dropDownSnapshot,
+                );
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -61,7 +71,7 @@ class MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         const Text('Digits: '),
-                        Text(dropDownSnapshot.data),
+                        Text(dropDownSnapshot.data!),
                         const Text('Numbers: '),
                         Text(counterSnapshot.data.toString()),
                       ],
@@ -72,101 +82,134 @@ class MyHomePageState extends State<MyHomePage> {
                     ElevatedButton(
                       key: const Key('StartGame'),
                       style: TextButton.styleFrom(
-                        primary: Colors.teal,
+                        foregroundColor: Colors.teal,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                         ),
                       ),
                       onPressed: () {
-                        print("To be implemented"); //todo
-                        // int randomNumber;
-                        // = random.nextInt(100);
-                        // if (dropdownValue == 1.toString()) {
-                        //   randomNumber = random.nextInt(9);
-                        // } else if (dropdownValue == 2.toString()) {
-                        //   randomNumber = random.nextInt(99);
-                        // } else if (dropdownValue == 3.toString()) {
-                        //   randomNumber = random.nextInt(999);
-                        // } else {
-                        //   randomNumber = random.nextInt(9999);
-                        // }
-                        homePageModel.listGeneration(
-                          int.parse(dropDownSnapshot.data),
-                          counterSnapshot.data,
-                        );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const NumberDisplay(),
-                          ),
-                        );
+                        homePageModel
+                            .navigateToNumberDisplay(context)
+                            .then((value) {
+                          setState(() {
+                            _textFieldEnabled = value;
+                          });
+                          print('inside navigated future $_textFieldEnabled');
+                        });
                       },
                       child: const Text(
                         'Start',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),
                     const SizedBox(height: 20),
-                    TextButton.icon(
-                      icon: const Icon(Icons.wifi_protected_setup),
-                      label: const Text('Replay'),
-                      style: TextButton.styleFrom(
-                        primary: Colors.teal,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: Form(
+                        key: _globalFormKey,
+                        child: TextFormField(
+                          enabled: _textFieldEnabled,
+                          controller: _textEditingController,
+                          decoration: const InputDecoration(
+                            labelText: 'Enter your number',
+                            border: OutlineInputBorder(),
+                            suffixIcon: Icon(
+                              Icons.text_fields_rounded,
+                            ),
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ], // Only numbers can be entered
+                          validator: (String? value) {
+                            print('text ${_textEditingController.text}');
+                            return homePageModel.validatorOfTextFormField(
+                              value: value,
+                              isTextFieldEnabled: _textFieldEnabled,
+                            );
+                          },
                         ),
                       ),
-                      onPressed: () {
-                        print("To be implemented"); //todo
-                      },
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.teal,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                      ),
-                      onPressed: () {
-                        showDialog<void>(
-                          context: dropDownContext,
-                          // barrierDismissible: barrierDismissible, false = user must tap button, true = tap outside dialog
-                          builder: (BuildContext dialogContext) {
-                            return AlertDialog(
-                              title: Text(homePageModel.rightOrWrong(54)),
-                              content: Text(
-                                'The correct answer is : ${homePageModel.getAnswer}',
-                              ),
-                              actions: <Widget>[
-                                TextButton(
-                                  style: ButtonStyle(
-                                    overlayColor:
-                                        MaterialStateColor.resolveWith(
-                                      (states) => Colors.blue.shade500,
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    'Try Again',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(dialogContext)
-                                        .pop(); // Dismiss alert dialog
-                                  },
-                                ),
-                              ],
-                            );
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        OutlinedButton(
+                          key: const Key('Replay'),
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.teal,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                            ),
+                          ),
+                          onPressed: () {
+                            homePageModel.navigateToNumberDisplay(context);
                           },
-                        );
-                      },
-                      child: const Text('Check'),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(Icons.wifi_protected_setup),
+                              Text(
+                                'Replay',
+                                style: TextStyle(
+                                  color: Colors.teal,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 10,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.teal,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                            ),
+                          ),
+                          onPressed: () {
+                            if (!_textFieldEnabled) {
+                              print('Disabled Button');
+                              return;
+                            } else if (!_globalFormKey.currentState!
+                                .validate()) {
+                              print('test$_textEditingController');
+                              return;
+                            } else {
+                              showDialog<void>(
+                                context: dropDownContext,
+                                // barrierDismissible: barrierDismissible, false = user must tap button, true = tap outside dialog
+                                builder: (BuildContext dialogContext) {
+                                  FocusManager.instance.primaryFocus?.unfocus();
+                                  return AlertDialog(
+                                    title: Text(
+                                      homePageModel.rightOrWrong(
+                                        _textEditingController.text,
+                                      ),
+                                    ),
+                                    content: Text(
+                                      homePageModel.resultText(
+                                        homePageModel.rightOrWrong(
+                                          _textEditingController.text,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ).then((value) {});
+                            }
+                          },
+                          child: const Text('Check'),
+                        ),
+                      ],
                     ),
                   ],
                 );
@@ -178,6 +221,10 @@ class MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         key: const ValueKey('HomePageFloatingActionButton'),
         onPressed: () async {
+          setState(() {
+            _textFieldEnabled = false;
+            _textEditingController.clear();
+          });
           return showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -186,11 +233,11 @@ class MyHomePageState extends State<MyHomePage> {
                 initialData: '1',
                 builder: (
                   BuildContext dropDownContext,
-                  AsyncSnapshot<String> dropDownSnapshot,
+                  AsyncSnapshot<String?> dropDownSnapshot,
                 ) {
                   return StreamBuilder(
                     stream: counterBloc.counter,
-                    initialData: 0,
+                    initialData: 1,
                     builder: (
                       BuildContext counterContext,
                       AsyncSnapshot<int> counterSnapshot,
@@ -201,10 +248,11 @@ class MyHomePageState extends State<MyHomePage> {
                           elevation: 20,
                           shadowColor: Colors.yellow,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Row(
                                 children: [
-                                  const Text('Number of Inputs '),
+                                  const Text('Number of Occurrences'),
                                   const SizedBox(width: 10),
                                   Expanded(
                                     child: TextFormField(
@@ -213,8 +261,6 @@ class MyHomePageState extends State<MyHomePage> {
                                       ),
                                       textAlign: TextAlign.center,
                                       decoration: InputDecoration(
-                                        labelText:
-                                            'Enter the number of occurrences',
                                         suffixIcon: IconButton(
                                           splashRadius: 20.0,
                                           icon: const Icon(
@@ -223,9 +269,11 @@ class MyHomePageState extends State<MyHomePage> {
                                           onPressed: () {
                                             counterBloc.counterEventSink
                                                 .add(IncrementEvent());
+                                            print(counterSnapshot.data);
                                           },
                                         ),
                                         prefixIcon: IconButton(
+                                          splashRadius: 20.0,
                                           icon: const Icon(
                                             Icons.arrow_back_ios_rounded,
                                           ),
@@ -248,7 +296,12 @@ class MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ],
                               ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 100,
+                              ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Text('Number of digits: '),
                                   const SizedBox(
@@ -281,7 +334,8 @@ class MyHomePageState extends State<MyHomePage> {
                                 ),
                                 child: const Text('Submit'),
                                 onPressed: () {
-                                  //TODO IMPLEMENTATION OF function for list of numbers for the game generation
+                                  homePageModel.submitGameState(
+                                      counterSnapshot, dropDownSnapshot,);
                                   Navigator.of(context).pop();
                                 },
                               ),

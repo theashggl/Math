@@ -1,159 +1,97 @@
-// ignore: file_names
-// ignore: file_names
+import 'package:flutter/cupertino.dart';
 
-// ignore_for_file: file_names, avoid_positional_boolean_parameters
+class MyParentClass extends StatefulWidget {
+  const MyParentClass({Key? key}) : super(key: key);
 
-/**********This is a sample class with some separation of logic and ui*********/
-
-
-
-//UI class
-class NewAccountComponent extends StatelessWidget {
-  final NewAccountComponentLogic logic = NewAccountComponentLogic();
   @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text('Enter a Unique Account Number'),
-      titlePadding: EdgeInsets.all(20.0),
-      content: TextFormField(
-        controller: logic.controller,
-        onPressed: () => logic.clearTextFormField(),
-      ),
-    );
-  }
-}
-//logic
-class NewAccountComponentLogic {
-  static String accountNumber;
-  static bool existsAccountNumber;
-  TextEditingController controller = TextEditingController();
-  clearTextFormField() {
-    controller.text = '';
-    accountNumber = '';
-  }
+  State<MyParentClass> createState() => _MyParentClassState();
 }
 
+class _MyParentClassState extends State<MyParentClass> {
+  MyState stateAboveChildren = MyState(name: 'name', age: 20);
 
+  void _nameChanged(String value) {
+    setState(() {
+      stateAboveChildren = stateAboveChildren.copyWith(name: value);
+    });
+  }
 
+  void _ageChanged(int value) {
+    setState(() {
+      stateAboveChildren = stateAboveChildren.copyWith(age: value);
+    });
+  }
 
-
-//even improved ui
-class NewAccountComponent extends StatelessWidget {
-  final NewAccountComponentLogic logic = NewAccountComponentLogic(
-    '123456',
-    true,
-    TextEditingController(),
-  );
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text('Enter a Unique Account Number'),
-      titlePadding: EdgeInsets.all(20.0),
-      content: TextFormField(
-        controller: logic.controller,
-      ),
-      actions: <Widget>[
-        TextButton(
-          child: Text('Done'),
-          onPressed: () {
-            print(logic.controller.text);
-            logic.clearTextFormField();
-          },
-        ),
+    return Column(
+      children: [
+        ChildOne(state: stateAboveChildren, onChanged: _nameChanged),
+        ChildTwo(state: stateAboveChildren, onChanged: _ageChanged),
       ],
     );
   }
 }
-//improved logic
-class NewAccountComponentLogic {
-  String accountNumber;
-  bool existsAccountNumber;
-  TextEditingController controller;
-  NewAccountComponentLogic(
-      this.accountNumber,
-      this.existsAccountNumber,
-      this.controller,
-      );
 
-  void clearTextFormField() {
-    controller.text = '';
-    accountNumber = '';
-  }
-}
-
-
- String _value1;
-  String _value2;
-
-  final List<String> nameList = <String>[
-    "Name1",
-    "Name2",
-    "Name3",
-    "Name4",
-    "Name5",
-    "Name6",
-    "Name7",
-    "Name8"
-  ];
+class ChildOne extends StatelessWidget {
+  final ValueChanged<String> onChanged;
+  final MyState state;
+  const ChildOne({Key? key, required this.state, required this.onChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 2.0,
-        title: Text('Hello'),
-      ),
-      body:  ListView(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Text('Name: '),
-                  Center(
-                    child: DropdownButton(
-                      value: _value1,
-                      onChanged: (value) {
-                        setState(() {
-                          _value1 = value;
-                        });
-                      },
-                      items: nameList.map(
-                        (item) {
-                          return DropdownMenuItem(
-                            value: item,
-                            child: new Text(item),
-                          );
-                        },
-                      ).toList(),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Text('Name: '),
-                  Center(
-                    child: DropdownButton(
-                      value: _value2,
-                      onChanged: (value) {
-                        setState(() {
-                          _value2 = value;
-                        });
-                      },
-                      items: nameList.map(
-                        (item) {
-                          return DropdownMenuItem(
-                            value: item,
-                            child: new Text(item),
-                          );
-                        },
-                      ).toList(),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-      backgroundColor: Colors.grey[200],
+    return Column(
+      children: [
+        TextFormField(
+          initialValue: state.name,
+          onChanged: onChanged,
+        ),
+        Text(state.name),
+        Text('${state.age}')
+      ],
     );
   }
 }
+
+class ChildTwo extends StatelessWidget {
+  final ValueChanged<int> onChanged;
+  final MyState state;
+  const ChildTwo({Key? key, required this.state, required this.onChanged})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextFormField(
+          initialValue: '${state.age}',
+          keyboardType: const TextInputType.numberWithOptions(decimal: false),
+          onChanged: (value) =>onChanged(int.parse(value)),
+        ),
+        Text('${state.age}'),
+        Text(state.name),
+      ],
+    );
+  }
+}
+
+class MyState {
+  final String name;
+  final int age;
+  MyState({
+    required this.name,
+    required this.age,
+  });
+
+  MyState copyWith({
+    String? name,
+    int? age,
+  }) {
+    return MyState(
+      name: name ?? this.name,
+      age: age ?? this.age,
+    );
+  }
+}
+// https://discord.com/channels/420324994703163402/421445316617961502/971112847767654430 - the link to discord message describing it

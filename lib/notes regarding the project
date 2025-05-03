@@ -1,3 +1,7 @@
+Completion till now - The first working version created of it.
+<<--->>
+Remaining Work - Remove spaghetti code on priority. Need to test and push code on main. Then we can implement SOLID principles and push it to the main branch.
+
 github actions to use
 https://github.com/marketplace/actions/dart-flutter-package-analyzer
 https://github.com/marketplace/actions/labeler (use it later)
@@ -27,7 +31,7 @@ Agile method -
  6) review
  7) back to step 1
 
-Try different services for push notifications like onesignal.
+Try different services for push notifications like onesignal.(For flutter not for this project)
 
 Custom Code-writing style used-:
 1) Use the methods for the functionality of widgets in a different file named name of
@@ -61,3 +65,16 @@ In Unix systems the end of a line is represented with a line feed (LF). In windo
 If you are a single developer working on a windows machine, and you don't care that git automatically replaces LFs to CRLFs, you can turn this warning off by typing the following in the git command line
 
 "git config core.autocrlf true"
+
+Changes in the commit -:
+some null safety code implementation
+changing logic for home_page_functionality.dart and number_display_functionalities.dart
+Updated title of app
+some UI changes with the Flutter version update
+Updating tests in the app
+Dependencies updates
+gradle updates
+some changes done few years back is getting committed now
+workflows file not updated
+omitting the storing of git history in history file
+committing the changes to gamelogic,workflows branch as there are already commits in the branch after merge
