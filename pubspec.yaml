@@ -13,8 +13,8 @@ dependencies:
   cupertino_icons: ^1.0.4
   flutter:
     sdk: flutter
-  lint: ^1.8.2
-  numberpicker: ^2.1.1
+  lint: ^2.8.0
+  numberpicker: ^2.1.2
 
 dev_dependencies:
   flutter_test:
