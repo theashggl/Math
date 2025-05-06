@@ -25,7 +25,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'beta' # 'dev', 'alpha', default to: 'stable'
-          flutter-version: '3.29.x' # you can also specify exact version of flutter
+          flutter-version: '3.3x.x' # you can also specify exact version of flutter
 
       # Get flutter dependencies.
         if: always()
