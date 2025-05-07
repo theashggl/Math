@@ -31,22 +31,26 @@ class MyHomePageStateFunctionality {
   }
 
   //Errors to show in the textFormField in the home page
-  String? validatorOfTextFormField({String? value, required bool isTextFieldEnabled}) {
-    if (value==null || value.isEmpty ) {
-      if(isTextFieldEnabled){
-      return 'Please provide your input';
-      }
-      else{
+  String? validatorOfTextFormField(
+      {String? value, required bool isTextFieldEnabled}) {
+    if (value == null || value.isEmpty) {
+      if (isTextFieldEnabled) {
+        return 'Please provide your input';
+      } else {
         return 'Please start the game first';
       }
     }
     return null;
   }
 
-  void submitGameState(AsyncSnapshot<int> countersnapshot,
-      AsyncSnapshot<String?> dropDownSnapshot,) {
+  void submitGameState(
+    AsyncSnapshot<int> countersnapshot,
+    AsyncSnapshot<String?> dropDownSnapshot,
+  ) {
     stateAboveChildren = MyState(
-        counter: countersnapshot.data, dropDownValue: dropDownSnapshot.data,);
+      counter: countersnapshot.data,
+      dropDownValue: dropDownSnapshot.data,
+    );
   }
 
   Future<bool> navigateToNumberDisplay(BuildContext context) async {
@@ -62,5 +66,4 @@ class MyHomePageStateFunctionality {
     );
     return true;
   }
-
 }

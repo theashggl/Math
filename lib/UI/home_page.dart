@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final String? title;
-  const MyHomePage({Key? key, this.title}) : super(key: key);
+  const MyHomePage({super.key, this.title});
 
   @override
   MyHomePageState createState() => MyHomePageState();
@@ -220,12 +220,12 @@ class MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         key: const ValueKey('HomePageFloatingActionButton'),
-        onPressed: () async {
+        onPressed: () {
           setState(() {
             _textFieldEnabled = false;
             _textEditingController.clear();
           });
-          return showDialog(
+           showDialog(
             context: context,
             builder: (BuildContext context) {
               return StreamBuilder(
@@ -335,7 +335,9 @@ class MyHomePageState extends State<MyHomePage> {
                                 child: const Text('Submit'),
                                 onPressed: () {
                                   homePageModel.submitGameState(
-                                      counterSnapshot, dropDownSnapshot,);
+                                    counterSnapshot,
+                                    dropDownSnapshot,
+                                  );
                                   Navigator.of(context).pop();
                                 },
                               ),

@@ -33,7 +33,7 @@ jobs:
 
       # Check for any formatting issues in the code.
         if: always()
-      - run: flutter format . --set-exit-if-changed
+      - run: dart format . --set-exit-if-changed
 
       # Statically analyze the Dart code for any errors.
         if: always()

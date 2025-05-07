@@ -5,7 +5,7 @@ import 'package:flutter_apps/Models/number_display_functionalities.dart';
 //This page will show the numbers on the screen once the user hits start on the home page
 class NumberDisplay extends StatelessWidget {
   final MyState mystate;
-  const NumberDisplay({Key? key, required this.mystate}) : super(key: key);
+  const NumberDisplay({super.key, required this.mystate});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +20,11 @@ class NumberDisplay extends StatelessWidget {
 class NumberScreen extends StatefulWidget {
   final int? counter;
   final String? dropDownValue;
-  const NumberScreen(
-      {required this.counter, required this.dropDownValue, Key? key,})
-      : super(key: key);
+  const NumberScreen({
+    required this.counter,
+    required this.dropDownValue,
+    super.key,
+  });
   @override
   _NumberScreenState createState() => _NumberScreenState();
 }
@@ -53,8 +55,9 @@ class _NumberScreenState extends State<NumberScreen> {
               children: [
                 Text(
                   snapshot.data.toString(),
-                  style: const TextStyle(fontSize: 100,
-                  fontWeight: FontWeight.w800,
+                  style: const TextStyle(
+                    fontSize: 100,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
                 const SizedBox(

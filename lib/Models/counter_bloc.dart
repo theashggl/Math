@@ -26,7 +26,7 @@ class CounterBloc {
     } else if (event is IncrementEvent && _counter < 10) {
       _counter++;
     } else {
-      if (event is DecrementEvent && _counter >= 2 && _counter<=10) {
+      if (event is DecrementEvent && _counter >= 2 && _counter <= 10) {
         _counter--;
       }
     }

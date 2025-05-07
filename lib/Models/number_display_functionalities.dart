@@ -47,8 +47,9 @@ class GameListGeneration {
   Future<void> arrayInitializer(List ar) async {
     const Duration duration = Duration(seconds: 2);
     for (int i = 0; i < int.parse(_streamsProcessorList[0].toString()); i++) {
-      final num maxNumber =
-          pow(10, int.parse(_streamsProcessorList[1].toString())) - 1;//setting maximum number allowed by the input constraints of the user
+      final num maxNumber = pow(
+              10, int.parse(_streamsProcessorList[1].toString())) -
+          1; //setting maximum number allowed by the input constraints of the user
       if (i == 0) {
         setInitialData(Random().nextInt(maxNumber.toInt()));
         print('initialDataGetter $initialDataGetter');
