@@ -225,7 +225,7 @@ class MyHomePageState extends State<MyHomePage> {
             _textFieldEnabled = false;
             _textEditingController.clear();
           });
-           showDialog(
+          showDialog(
             context: context,
             builder: (BuildContext context) {
               return StreamBuilder(
