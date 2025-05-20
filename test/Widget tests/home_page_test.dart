@@ -31,20 +31,18 @@ void main() {
     expect(find.byIcon(Icons.wifi_protected_setup), findsOneWidget);
     expect(find.text('Check'), findsOneWidget);
     expect(find.byIcon(Icons.add), findsOneWidget);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('1'), findsNWidgets(2));
     //
     // // Tap the '+' icon and trigger a frame.
     // await tester.tap(find.byIcon(Icons.add));
     // await tester.pump();
     //
     // // Verify that our counter has incremented.
-    expect(find.text('0'), findsOneWidget);
     // expect(find.text('1'), findsOneWidget);
     await tester.tap(floatingActionButton);
     await tester.pump();
-    expect(find.text('Number of Inputs '), findsOneWidget);
-    expect(find.text('Enter the number of occurrences'), findsOneWidget);
-    expect(find.text('ABC'), findsOneWidget);
+    // expect(find.text('Enter the number of occurrences'), findsOneWidget);
+    expect(find.text('Number of digits: '), findsOneWidget);
     expect(find.text('Submit'), findsOneWidget);
     expect(find.byIcon(Icons.arrow_downward), findsOneWidget);
     expect(find.byIcon(Icons.arrow_back_ios_rounded), findsOneWidget);

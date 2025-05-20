@@ -4,16 +4,16 @@ import 'package:flutter_apps/Data/drop_down_event.dart';
 
 class DropDownValueBloc {
   DropDownList dropDownListObject = DropDownList();
-  final _dropDownValueEventController = StreamController<String>.broadcast();
-  StreamSink<String> get _inDropDownValue => _dropDownValueEventController
+  final _dropDownValueEventController = StreamController<String?>.broadcast();
+  StreamSink<String?> get _inDropDownValue => _dropDownValueEventController
       .sink; //to create an output sink to get values from into stream
 
-  Stream<String> get dropDownValue =>
+  Stream<String?> get dropDownValue =>
       _dropDownValueEventController.stream; //to create stream of output
 
-  final _dropDownValueStateController = StreamController<String>();
+  final _dropDownValueStateController = StreamController<String?>();
 
-  Sink<String> get dropDownValueStreamController =>
+  Sink<String?> get dropDownValueStreamController =>
       _dropDownValueStateController
           .sink; //to create sink of input for the variable
 
@@ -30,7 +30,7 @@ class DropDownValueBloc {
     _dropDownValueStateController.stream.listen(_mapEventToState);
   }
 
-  void _mapEventToState(String selectedValueFromDropDown) {
+  void _mapEventToState(String? selectedValueFromDropDown) {
     _inDropDownValue.add(selectedValueFromDropDown);
   }
 

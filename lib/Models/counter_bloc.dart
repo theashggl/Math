@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter_apps/Data/counter_event.dart';
 
 class CounterBloc {
-  int _counter = 0;
+  int _counter = 1;
 
   final _counterStateController = StreamController<int>.broadcast();
   StreamSink<int> get _inCounter => _counterStateController.sink;
@@ -20,11 +20,15 @@ class CounterBloc {
 
   void _mapEventToState(CounterEvent event) {
     if (event is RandomEvent) {
-      _counter = event.value;
-    } else if (event is IncrementEvent) {
+      if (event.value > 0 && event.value <= 10) {
+        _counter = event.value;
+      }
+    } else if (event is IncrementEvent && _counter < 10) {
       _counter++;
     } else {
-      _counter--;
+      if (event is DecrementEvent && _counter >= 2 && _counter <= 10) {
+        _counter--;
+      }
     }
     _inCounter.add(_counter);
   }

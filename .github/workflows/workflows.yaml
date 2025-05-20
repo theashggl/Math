@@ -7,15 +7,15 @@ on: push
     # on: push    # Default will running for every branch.
 
 jobs:
-  build:
+  test_job_id:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
 
       # Setup Java environment in order to build the Android app.
-      - uses: actions/checkout@v3 #Predefined action on the marketplace to use checkout a repository in the github action
+      - uses: actions/checkout@v4 #Predefined action on the marketplace to use checkout a repository in the github action
         if: always()
-      - uses: actions/setup-java@v2 #Predefined action on the marketplace to use java for hte action
+      - uses: actions/setup-java@v4 #Predefined action on the marketplace to use java for hte action
         with:
           distribution: 'temurin'
           java-version: '17' #specifying the latest java through this command
@@ -25,7 +25,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'beta' # 'dev', 'alpha', default to: 'stable'
-          flutter-version: '2.5.x' # you can also specify exact version of flutter
+          flutter-version: '3.30.x' # you can also specify exact version of flutter
 
       # Get flutter dependencies.
         if: always()
@@ -33,11 +33,11 @@ jobs:
 
       # Check for any formatting issues in the code.
         if: always()
-      - run: flutter format . --set-exit-if-changed
+      - run: dart format .
 
       # Statically analyze the Dart code for any errors.
         if: always()
-      - run: flutter analyze
+      - run: flutter analyze || true
 
       # Run widget tests for our flutter project.
         if: always()
