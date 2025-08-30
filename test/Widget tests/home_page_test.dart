@@ -12,10 +12,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('Material App Widget test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    final materialApp = find.byKey(const ValueKey('StartGame'));
-    final floatingActionButton =
-        find.byKey(const ValueKey('HomePageFloatingActionButton'));
-    // Verify that our counter starts at 0.
     await tester.pumpWidget(
       const MaterialApp(
         home: MyHomePage(
@@ -23,29 +19,38 @@ void main() {
         ),
       ),
     );
-    // await tester.pump();
-    // expect(find.text('Digits:'), findsOneWidget);
-    expect(materialApp, findsOneWidget);
+    //home page widget test
+    expect(find.byKey(const ValueKey('StartGame')), findsOneWidget);
     expect(find.text('Start'), findsOneWidget);
     expect(find.text('Replay'), findsOneWidget);
     expect(find.byIcon(Icons.wifi_protected_setup), findsOneWidget);
     expect(find.text('Check'), findsOneWidget);
+    expect(find.text('+ (addition)'), findsOneWidget);
     expect(find.byIcon(Icons.add), findsOneWidget);
-    expect(find.text('1'), findsNWidgets(2));
-    //
-    // // Tap the '+' icon and trigger a frame.
-    // await tester.tap(find.byIcon(Icons.add));
-    // await tester.pump();
-    //
-    // // Verify that our counter has incremented.
-    // expect(find.text('1'), findsOneWidget);
-    await tester.tap(floatingActionButton);
+    expect(find.text('1'), findsNWidgets(1));
+    expect(find.text('2'), findsNWidgets(1));
+    await tester.tap(find.byKey(const ValueKey('HomePageFloatingActionButton')));
     await tester.pump();
-    // expect(find.text('Enter the number of occurrences'), findsOneWidget);
+    //Game parameters widget test
     expect(find.text('Number of digits: '), findsOneWidget);
-    expect(find.text('Submit'), findsOneWidget);
-    expect(find.byIcon(Icons.arrow_downward), findsOneWidget);
     expect(find.byIcon(Icons.arrow_back_ios_rounded), findsOneWidget);
     expect(find.byIcon(Icons.arrow_forward_ios_rounded), findsOneWidget);
+    for (int i = 0; i < 4; i++) {
+      await tester.tap(find.byIcon(Icons.arrow_forward_ios_rounded));
+    }
+    expect(find.text('+'), findsOneWidget);
+    expect(find.text('-'), findsOneWidget);
+    expect(find.text('X'), findsOneWidget);
+    expect(find.text('÷'), findsOneWidget);
+    await tester.tap(find.text('÷'));
+    await tester.pump();
+    expect(find.text('÷ (division)'), findsOneWidget);
+    expect(find.byIcon(Icons.arrow_downward), findsOneWidget);
+    expect(find.text('Submit'), findsOneWidget);
+    expect(find.text('Exit'), findsOneWidget);
+    await tester.tap(find.text('Exit'));
+    await tester.pump();
+    //Home page widget test
+    expect(find.text('6'), findsNWidgets(1));
   });
 }

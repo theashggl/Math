@@ -1,6 +1,13 @@
 Completion till now - The first working version created of it.
 <<--->>
-Remaining Work - Remove spaghetti code on priority. Need to test and push code on main. Then we can implement SOLID principles and push it to the main branch.
+Remaining Work - Remove spaghetti code on priority. Need to test and push code on main.
+Then we can implement SOLID principles and push it to the main branch.
+Change the file structure to use feature first app architecture for the files.
+Add test code to test the working of the actual game after the parameters of the game is selected.
+Add documentation in the codebase through comments.
+Document the tests properly to mark the feature being tested in the app through the code.
+
+Bugs in app found - Fix only 1 operand upon starting the game once the app starts without going to the floating action button.
 
 github actions to use
 https://github.com/marketplace/actions/dart-flutter-package-analyzer
@@ -15,7 +22,9 @@ My opinion of Things to mind in a Flutter project-:
 3) CI/CD implementation through github actions.
 4) Testing
 5) Github syncing of project.
-Same from the expert's opinion can be found here - https://www.youtube.com/watch?v=bn5e95b3uLY
+   Same from the expert's opinion can be found here - https://www.youtube.com/watch?v=bn5e95b3uLY
+1 more-:
+6) Folder architecture.
 
 
 It is  recommended to deploy ci/cd locally before migrating to cloud platform
@@ -39,11 +48,10 @@ Custom Code-writing style used-:
    which will have the test file named widgetfile_testnametest.dart.
 2) Class names for the functionalities of the widget file will be ClassNameWithTheUIFunctionalities.
 3) File name for the functionalities file will be file_name_of_ui_file_functionality.dart
-4) MVVM design is used which is-:
-ui<=>modelview<=>data
-ui - is the interface
-model view - is the intermediary which responds to the data changes
-data - part is the actual data of the app.
+4) Feature first layout for files used in the codebase. All the files related to a feature are stored in a separate folder.
+   The details are present in this article. https://codewithandrea.com/articles/flutter-project-structure/
+5) In the integration tests, the code practice used will be without grouping where one tester object will keep on testing all the flows.
+   To segregate features and make the code more readable, comments will be used to denote feature being tested by the code.
 
 The steps to build the app
 design and get the ui ready and then work on getting the things perfect.
