@@ -1,0 +1,105 @@
+Completion till now - The first working version created of it.
+<<--->>
+Remaining Work - Remove spaghetti code on priority. Need to test and push code on main.
+Then we can implement SOLID principles and push it to the main branch.
+Change the file structure to use feature first app architecture for the files.
+Add test code to test the working of the actual game after the parameters of the game is selected.
+Add documentation in the codebase through comments.
+Document the tests properly to mark the feature being tested in the app through the code.
+Leaving the print statements in the codebase for debugging purposes for now.
+In the first commit of merge of branches "feature_first_architecture" and "gamelogic", add all the changes introduced to this branch to gamelogic also.
+Skipping designing step of the app and going with a simple minimal view in the lack of design for now.
+
+Bugs in app found -
+1) Fix only 1 operand upon starting the game once the app starts without going to the floating action button.
+2) Widget test is passing for showDialog in app after popping. Issue marked in home_page_test.dart file as a todo to be remediated later. Same is not happening for integration test.
+3) operationTextInHomePage variable values are not having consistency in casing.
+4) dropDownPressed method not having variable limit check shown in the ui or the case coded when the passed variable is out of limits.
+5) Exit and Submit button on the Floating_action_button.dart works the same.
+
+Future features -:
+1) Add an option to select desired time between two different number occurrences.
+2) An option to select the places after decimal that should be tested when answering a round of the game.
+3) Add validators to all the fields to let the user know about the limits of the particular field.
+4) Add confetti package to show confetti when user answers correctly.
+
+github actions to use
+https://github.com/marketplace/actions/dart-flutter-package-analyzer
+https://github.com/marketplace/actions/labeler (use it later)
+
+whole list of actions
+https://github.com/sdras/awesome-actions
+
+My opinion of Things to mind in a Flutter project-:
+1) Linting
+2) Single Responsibility for widgets
+3) CI/CD implementation through github actions.
+4) Testing
+5) Github syncing of project.
+   Same from the expert's opinion can be found here - https://www.youtube.com/watch?v=bn5e95b3uLY
+1 more-:
+6) Folder architecture.
+
+
+It is  recommended to deploy ci/cd locally before migrating to cloud platform
+
+The sdlc model to use into the project-:
+Agile for now.
+Agile method -
+ 1) Requirement
+ 2) design
+ 3) development
+ 4) testing
+ 5) deployment
+ 6) review
+ 7) back to step 1
+
+Try different services for push notifications like onesignal.(For flutter not for this project)
+
+Custom Code-writing style used-:
+1) Use the methods for the functionality of widgets in a file named name_of_widgetfile_functionalities.dart
+   for the file named widgetfile.dart
+   which will have the test file named widgetfile_testnametest.dart.
+2) Class names for the functionalities of the widget file will be ClassNameWithTheUIFunctionalities.
+3) File name for the functionalities file will be file_name_of_ui_file_functionality.dart
+4) Feature first layout for files used in the codebase. All the files related to a feature are stored in a separate folder.
+   The details are present in this article. https://codewithandrea.com/articles/flutter-project-structure/
+5) In the integration tests, the code practice used will be without grouping where one tester object will keep on testing all the flows.
+   To segregate features and make the code more readable, comments will be used to denote feature being tested by the code.
+6) Caveats of the architecture used-:
+The files counter_event.dart, drop_down_event.dart and inherited_widget_functionality.dart are all kept in shared folder for now as the code is common to game_information and game_parameter feature.
+7) Explain new code concepts in the first commit of using them through code comments. Then remove the code comments that explain said public concepts in the very next commit on that branch.
+   Tracking of the comments will be done in a file, created in the first commit containing this line in this file, in root directory named comments_to_be_deleted_in_next_commit.
+8) When merging two branches, the first commit on the merge should have changes mentioned in this file for the commit message section that will cover what was introduced in the branch having latest changes.
+9) Page object model for test code.
+
+The steps to build the app
+design and get the ui ready and then work on getting the things perfect.
+
+https://medium.com/nerd-for-tech/unit-testing-streams-in-dart-flutter-6ed72c19f761
+
+VCS branching pattern-:
+There will be a head branch on which all the code will be worked on.
+A sub branch to the working branch with the name as <workingbranchname,workflows> will be followed for all branches to try the faulty workflows and fix them, after which the commit will finally be pushed to the working branch.
+The main branch will only contain the stable and features versions.
+
+My understanding about git/github till now-:
+For every commit we need to push to the respective branch (no automatic fix is found yet). Or all commits can be pushed with( git push --all -u) so that the branches and commit are copied as it is on github and an upstream is set for the branches.
+After the fix is done, we need to merge the branches but for that we need to run the query "git switch <branch where to merge the other branch>" and then "git merge <branch which will be merged>". and then we delete the branch merged by running git branch -d <merged branch name>.
+But this works only for git, for github we need to create a pull request in github and then merge the branch.
+The details can be found at this link https://www.youtube.com/watch?v=5g37NElQnCQ.
+
+
+Use the following space to add the commit message in case of multiple changes
+(Mention in git commit message as "commit message in notes_regarding_the_project.txt file at the end")-:
+1) fixed package imports to be able to run on every platform and github actions won't fail.
+2) Implemented feature first architecture.
+3) Added a file for tracking comments for deleting in next commits.
+4) Updated the code style list section in "notes regarding the project.txt".
+5) Renamed number_of_occurrences_option.dart
+6) Added the future features section in this file.
+7) Implemented InheritedWidget instead of global state or bloc to manage state across the routes.
+8) Changed the file name for "notes regarding the project.txt" to "notes_regarding_the_project.txt".
+9) Updated remaining work section in this file.
+10) Fixed some minor issues with the code.
+11) Updated dependencies in pubspec.yaml file.

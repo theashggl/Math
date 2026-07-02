@@ -20,11 +20,44 @@ void main() {
       await gameParameterScreenTest(tester: tester);
 
       //Testing updated home screen after game parameters change
-      homeScreenTest(digits: '3', operands: '7', operation: '÷ (division)');
+      homeScreenTest(digits: '3', operands: '9', operation: '÷ (division)');
+      expect(find.text('Exit'), findsNothing);
+      await tester.tap(find.text('Start'));
+      await tester.pumpAndSettle();
+
+      //Testing the number display screen
+      numberDisplayTest();
     });
   });
 }
 
+//number displaying screen
+void numberDisplayTest() {
+  expect(find.byType(Text), findsNWidgets(2));
+expect(  find.byWidgetPredicate((widget)=>widget is Text &&widget.data is String),findsNWidgets(2));
+  expect(find.text('Exit'), findsOneWidget);
+}
+
+//home screen tests
+void homeScreenTest(
+    {required String digits,
+    required String operands,
+    required String operation}) {
+  expect(find.text('Digits: '), findsOneWidget);
+  expect(find.text(digits), findsOneWidget);
+  expect(find.text('Count of operands: '), findsOneWidget);
+  expect(find.text(operands), findsOneWidget);
+  expect(find.text('Mathematical Operation: '), findsOneWidget);
+  expect(find.text(operation), findsOneWidget);
+  expect(find.byKey(const ValueKey('StartGame')), findsOneWidget);
+  expect(find.bySubtype<ElevatedButton>(), findsNWidgets(2));
+  expect(find.bySubtype<Form>(), findsOneWidget);
+  expect(find.bySubtype<Row>(), findsNWidgets(3));
+  expect(find.text('Check'), findsOneWidget);
+  expect(find.text('Replay'), findsOneWidget);
+}
+
+//game parameter screen
 Future<void> gameParameterScreenTest({required WidgetTester tester}) async {
   //Floating action button test
   final Finder floatingActionButton =
@@ -37,12 +70,15 @@ Future<void> gameParameterScreenTest({required WidgetTester tester}) async {
   expect(find.byKey(const ValueKey('CardForGameParameters')), findsOneWidget);
   expect(find.text('1'), findsNWidgets(2));
   expect(find.text('Digits: '), findsOneWidget);
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 8; i++) {
     await tester.tap(find.byIcon(Icons.arrow_forward_ios_rounded));
+  }
+  for (int i = 0; i < 1; i++) {
+    await tester.tap(find.byIcon(Icons.arrow_back_ios_rounded));
   }
   await tester.pumpAndSettle();
   expect(
-    find.text('7'),
+    find.text('9'),
     findsNWidgets(
       2,
     ),
@@ -91,22 +127,4 @@ Future<void> gameParameterScreenTest({required WidgetTester tester}) async {
   expect(find.text('Exit'), findsOneWidget);
   await tester.tap(find.byKey(const ValueKey('SubmitGameParameters')));
   await tester.pumpAndSettle();
-}
-
-void homeScreenTest(
-    {required String digits,
-    required String operands,
-    required String operation}) {
-  expect(find.text('Digits: '), findsOneWidget);
-  expect(find.text(digits), findsOneWidget);
-  expect(find.text('Count of operands: '), findsOneWidget);
-  expect(find.text(operands), findsOneWidget);
-  expect(find.text('Mathematical Operation: '), findsOneWidget);
-  expect(find.text(operation), findsOneWidget);
-  expect(find.byKey(const ValueKey('StartGame')), findsOneWidget);
-  expect(find.bySubtype<ElevatedButton>(), findsNWidgets(2));
-  expect(find.bySubtype<Form>(), findsOneWidget);
-  expect(find.bySubtype<Row>(), findsNWidgets(3));
-  expect(find.text('Check'), findsOneWidget);
-  expect(find.text('Replay'), findsOneWidget);
 }

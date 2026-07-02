@@ -13,8 +13,9 @@ dependencies:
   cupertino_icons: ^1.0.4
   flutter:
     sdk: flutter
+  get_it: ^9.2.1
   lint: ^2.8.0
-  numberpicker: ^2.1.2
+  mocktail: ^1.0.4
 
 dev_dependencies:
   flutter_test:
