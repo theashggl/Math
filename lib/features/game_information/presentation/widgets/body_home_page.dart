@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_apps/features/game_numbers/presentation/number_display.dart';
-import 'package:flutter_apps/shared/widgets/home_page_inherited_widget.dart';
+import 'package:flutter_apps/service_locator.dart';
+import 'package:flutter_apps/shared/game_information_logic.dart';
+import 'package:flutter_apps/shared/game_parameters.dart';
 
 class GameInformationBody extends StatefulWidget {
-  const GameInformationBody({
+  GameLogic gameLogic;
+  GameInformationBody({
     super.key,
+    required this.gameLogic
   });
 
   @override
@@ -43,15 +47,17 @@ class _GameInformationBodyState extends State<GameInformationBody> {
   // }
   @override
   Widget build(BuildContext context) {
-    final HomePageInheritedWidget inheritedProvider =
-        HomePageInheritedWidget.of(context);
+    // final HomePageInheritedWidget inheritedProvider =
+    //     HomePageInheritedWidget.of(context);
     print(
-        'inherited data: ${inheritedProvider.gameObject.operationTextInHomePage}');
+        'inherited data: ${widget.gameLogic.operationTextInHomePage}');
     return Center(
         child: SingleChildScrollView(
       child: ListenableBuilder(
-          listenable: inheritedProvider.gameObject,
+          listenable: getIt<GameParameters>(),
           builder: (BuildContext context, Widget? child) {
+print('checking object between rebuilds: ${widget.gameLogic.hashCode}');
+            print('GameParameters rebuilt with operation: ${widget.gameLogic.operationTextInHomePage}');
             return
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +67,7 @@ class _GameInformationBodyState extends State<GameInformationBody> {
             children: [
               const Text('Digits: '),
               Text(
-                (inheritedProvider.gameObject.dropDownIndex + 1).toString(),
+                (getIt<GameParameters>().dropDownIndex + 1).toString(),
                 style: const TextStyle(
                   color: Colors.blue,
                   fontSize: 40,
@@ -69,7 +75,7 @@ class _GameInformationBodyState extends State<GameInformationBody> {
               ),
               const Text('Count of operands: '),
               Text(
-                inheritedProvider.gameObject.operandCount.toString(),
+                getIt<GameParameters>().operandCount.toString(),
                 style: const TextStyle(color: Colors.blue, fontSize: 40),
               ),
             ],
@@ -79,9 +85,16 @@ class _GameInformationBodyState extends State<GameInformationBody> {
           ),
           const Text('Mathematical Operation: '),
           //Listening to the change in the operationTextInHomePage variable
-          Text(
-            inheritedProvider.gameObject.operationTextInHomePage,
-            style: const TextStyle(color: Colors.blue, fontSize: 40),
+          ListenableBuilder(
+            listenable: widget.gameLogic,
+            builder: (BuildContext context,Widget? child) {
+              print('rebuild gamelogic ${widget.gameLogic.operationTextInHomePage}');
+              return
+                Text(
+                widget.gameLogic.operationTextInHomePage,
+                style: const TextStyle(color: Colors.blue, fontSize: 40),
+              );
+            }
           ),
           const SizedBox(
             height: 60,
@@ -95,7 +108,7 @@ class _GameInformationBodyState extends State<GameInformationBody> {
               ),
             ),
             onPressed: () {
-              inheritedProvider.gameObject
+              widget.gameLogic
                   .navigateToNumberDisplay(
                 () async => await Navigator.push(
                   context,
@@ -104,9 +117,9 @@ class _GameInformationBodyState extends State<GameInformationBody> {
                 ),
               )
                   .then((value) {
-                  inheritedProvider.gameObject.textFieldEnabled = value;
+                 widget.gameLogic.textFieldEnabled = value;
                 print(
-                    'inside navigated future ${inheritedProvider.gameObject.textFieldEnabled}');
+                    'inside navigated future ${widget.gameLogic.textFieldEnabled}');
               });
             },
             child: const Text(
@@ -120,11 +133,11 @@ class _GameInformationBodyState extends State<GameInformationBody> {
            SizedBox(
                   width: MediaQuery.of(context).size.width / 2,
                   child: Form(
-                    key: inheritedProvider.gameObject.globalFormKey,
+                    key: widget.gameLogic.globalFormKey,
                     child: TextFormField(
-                      enabled: inheritedProvider.gameObject.textFieldEnabled,
+                      enabled: widget.gameLogic.textFieldEnabled,
                       controller:
-                          inheritedProvider.gameObject.textEditingController,
+                          widget.gameLogic.textEditingController,
                       decoration: const InputDecoration(
                         labelText: 'Enter your number',
                         border: OutlineInputBorder(),
@@ -136,8 +149,8 @@ class _GameInformationBodyState extends State<GameInformationBody> {
                           signed: true, decimal: true),
                       validator: (String? value) {
                         print(
-                            'text ${inheritedProvider.gameObject.textEditingController.text}');
-                        return inheritedProvider.gameObject
+                            'text ${widget.gameLogic.textEditingController.text}');
+                        return widget.gameLogic
                             .validatorOfTextFormField(
                           value: value,
                         );
@@ -161,14 +174,14 @@ class _GameInformationBodyState extends State<GameInformationBody> {
                   ),
                 ),
                 onPressed: () {
-                  inheritedProvider.gameObject
+                  widget.gameLogic
                       .navigateToNumberDisplay(() async => await Navigator.push(
                     context,
                     MaterialPageRoute<num>(
                         builder: (context) => const NumberScreen()),
                   ),)
                       .then((value) =>
-                          inheritedProvider.gameObject.textFieldEnabled = true);
+                          widget.gameLogic.textFieldEnabled = true);
                 },
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -194,14 +207,13 @@ class _GameInformationBodyState extends State<GameInformationBody> {
                   ),
                 ),
                 onPressed: () {
-                  if (!inheritedProvider.gameObject.textFieldEnabled) {
+                  if (!widget.gameLogic.textFieldEnabled) {
                     print('Disabled Button');
                     return;
-                  } else if (!inheritedProvider
-                      .gameObject.globalFormKey.currentState!
+                  } else if (!widget.gameLogic.globalFormKey.currentState!
                       .validate()) {
                     print(
-                        'test${inheritedProvider.gameObject.textEditingController}');
+                        'test${widget.gameLogic.textEditingController}');
                     return;
                   } else {
                     showDialog<void>(
@@ -211,16 +223,14 @@ class _GameInformationBodyState extends State<GameInformationBody> {
                         FocusManager.instance.primaryFocus?.unfocus();
                         return AlertDialog(
                           title: Text(
-                            inheritedProvider.gameObject.rightOrWrong(
-                              userCalculation: inheritedProvider
-                                  .gameObject.textEditingController.text,
+                            widget.gameLogic.rightOrWrong(
+                              userCalculation: widget.gameLogic.textEditingController.text,
                             ),
                           ),
                           content: Text(
-                            inheritedProvider.gameObject.resultText(
-                              result: inheritedProvider.gameObject.rightOrWrong(
-                                userCalculation: inheritedProvider
-                                    .gameObject.textEditingController.text,
+                            widget.gameLogic.resultText(
+                              result: widget.gameLogic.rightOrWrong(
+                                userCalculation: widget.gameLogic.textEditingController.text,
                               ),
                             ),
                           ),

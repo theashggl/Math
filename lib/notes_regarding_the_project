@@ -16,13 +16,15 @@ Bugs in app found -
 3) operationTextInHomePage variable values are not having consistency in casing.
 4) dropDownPressed method not having variable limit check shown in the ui or the case coded when the passed variable is out of limits.
 5) Exit and Submit button on the Floating_action_button.dart works the same.
+6) Game not working again once played already.
 
 Future features -:
 1) Add an option to select desired time between two different number occurrences.
 2) An option to select the places after decimal that should be tested when answering a round of the game.
 3) Add validators to all the fields to let the user know about the limits of the particular field.
 4) Add confetti package to show confetti when user answers correctly.
-
+5) Create the domain class in game_info_domain.dart file for the home page to contain only details of the home page variables.
+6) Need to perfect the architecture by not adding the GameLogic class object in the body_of_home_page.dart file.
 github actions to use
 https://github.com/marketplace/actions/dart-flutter-package-analyzer
 https://github.com/marketplace/actions/labeler (use it later)
@@ -89,6 +91,12 @@ After the fix is done, we need to merge the branches but for that we need to run
 But this works only for git, for github we need to create a pull request in github and then merge the branch.
 The details can be found at this link https://www.youtube.com/watch?v=5g37NElQnCQ.
 
+Changes that were not properly mentioned in the previous commit in below commit messages section-:
+1) Incomplete tests
+2) Incomplete implementation of service locator using get_it package.
+3) Added a file named comments_to_be_deleted in next_commit to track comments that are just theory for the first ever implementation.
+4) Incomplete maintenance of comments_to_be_deleted_in_next_commit.txt file.
+5) history file updation stopped and will be removed in subsequent commits.
 
 Use the following space to add the commit message in case of multiple changes
 (Mention in git commit message as "commit message in notes_regarding_the_project.txt file at the end")-:
@@ -103,3 +111,4 @@ Use the following space to add the commit message in case of multiple changes
 9) Updated remaining work section in this file.
 10) Fixed some minor issues with the code.
 11) Updated dependencies in pubspec.yaml file.
+12) The branch feature_first_architecture_incomplete_code will be having incomplete code and will be merged to feature_first_branch until the errors are resolved. Nothing else will be taken care of other than the code to make the app work correctly on this branch.

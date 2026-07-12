@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_apps/service_locator.dart';
 import 'package:flutter_apps/shared/entities/counter_event.dart';
-import 'package:flutter_apps/shared/widgets/home_page_inherited_widget.dart';
+import 'package:flutter_apps/shared/game_information_logic.dart';
+import 'package:flutter_apps/shared/game_parameters.dart';
 
 class NumberOfOccurrencesOption extends StatefulWidget {
-  const NumberOfOccurrencesOption({
+  GameLogic gameLogic;
+  NumberOfOccurrencesOption({
     super.key,
+    required this.gameLogic
   });
 
   @override
@@ -15,10 +19,8 @@ class NumberOfOccurrencesOption extends StatefulWidget {
 class _NumberOfOccurrencesOptionState extends State<NumberOfOccurrencesOption> {
   @override
   Widget build(BuildContext context) {
-    final HomePageInheritedWidget inheritedProvider =
-        HomePageInheritedWidget.of(context);
     return ListenableBuilder(
-      listenable: inheritedProvider.gameObject,
+      listenable: widget.gameLogic,
       builder: (BuildContext context, Widget? child) {
         return Row(
           children: [
@@ -33,7 +35,7 @@ class _NumberOfOccurrencesOptionState extends State<NumberOfOccurrencesOption> {
                       Icons.arrow_back_ios_rounded,
                     ),
                     onPressed: () {
-                      inheritedProvider.gameObject
+                      widget.gameLogic
                           .operandCountChange(DecrementEvent());
                     },
                   ),
@@ -43,9 +45,9 @@ class _NumberOfOccurrencesOptionState extends State<NumberOfOccurrencesOption> {
                       Icons.arrow_forward_ios_rounded,
                     ),
                     onPressed: () {
-                      inheritedProvider.gameObject
+                      widget.gameLogic
                           .operandCountChange(IncrementEvent());
-                      print(inheritedProvider.gameObject.operandCount);
+                      print('onpressed call changing it to: ${getIt<GameParameters>().operandCount}');
                     },
                   ),
                   border: OutlineInputBorder(
@@ -53,11 +55,11 @@ class _NumberOfOccurrencesOptionState extends State<NumberOfOccurrencesOption> {
                   ),
                 ),
                 controller: TextEditingController(
-                  text: inheritedProvider.gameObject.operandCount.toString(),
+                  text: getIt<GameParameters>().operandCount.toString(),
                 ),
                 textAlign: TextAlign.center,
                 onChanged: (newValue) {
-                  inheritedProvider.gameObject
+                  widget.gameLogic
                       .operandCountChange(RandomEvent(int.parse(newValue)));
                 },
               ),

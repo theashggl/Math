@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_apps/features/game_numbers/domain/use_cases/number_display_functionalities.dart';
+import 'package:flutter_apps/service_locator.dart';
 import 'package:flutter_apps/shared/game_information_logic.dart';
-import 'package:flutter_apps/shared/widgets/home_page_inherited_widget.dart';
 
 //This page will show the numbers on the screen once the user hits start on the home page
 // class NumberDisplay extends StatelessWidget {
@@ -26,24 +26,15 @@ class NumberScreen extends StatefulWidget {
 
 class _NumberScreenState extends State<NumberScreen> {
   late GameListGeneration gameListGeneration;
-  late DIVariables diVariables;
-  late HomePageInheritedWidget inheritedProvider;
 
   @override
   Widget build(BuildContext context) {
-    inheritedProvider = HomePageInheritedWidget.of(context);
-    diVariables=DIVariables(selectedOperation: inheritedProvider.gameObject.selectedOperation,
-        counter: inheritedProvider.gameObject.operandCount,
-        digits: inheritedProvider.gameObject.dropDownIndex.toString());
     gameListGeneration = GameListGeneration(
-        // counter: inheritedProvider.gameObject.operandCount,
-        // digits: inheritedProvider.gameObject.dropDownIndex.toString(),
-        // selectedOperationEnum: inheritedProvider.gameObject.selectedOperation,
-    diVariablesParameter: diVariables);
+    diVariables: getIt<DIVariables>());
     print("backend call check ${gameListGeneration.answer}");
     return Scaffold(
       body: StreamBuilder<num>(
-        stream: gameListGeneration.outputStream,
+        stream: getIt<DIVariables>().outputStream,
         // initialData: gameListGeneration.answer,
         builder: (context, snapshot) {
           print('${snapshot.data} is the number');

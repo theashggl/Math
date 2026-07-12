@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_apps/shared/widgets/home_page_inherited_widget.dart';
+import 'package:flutter_apps/service_locator.dart';
+import 'package:flutter_apps/shared/game_information_logic.dart';
+import 'package:flutter_apps/shared/game_parameters.dart';
 
 class NumberOfDigitsOption extends StatefulWidget {
-  const NumberOfDigitsOption({super.key});
+  GameLogic gameLogic;
+  NumberOfDigitsOption({super.key,required this.gameLogic});
 
   @override
   State<NumberOfDigitsOption> createState() => _NumberOfDigitsOptionState();
@@ -11,12 +14,12 @@ class NumberOfDigitsOption extends StatefulWidget {
 class _NumberOfDigitsOptionState extends State<NumberOfDigitsOption> {
   @override
   Widget build(BuildContext context) {
-    final HomePageInheritedWidget inheritedProvider=HomePageInheritedWidget.of(context);
-    print('Drop down index: ${inheritedProvider.gameObject.dropDownIndex}');
+    // final HomePageInheritedWidget inheritedProvider=HomePageInheritedWidget.of(context);
+    print('Drop down index: ${getIt<GameParameters>().dropDownIndex}');
     print(
-        'drop down built with value: ${inheritedProvider.gameObject.dropDownList[inheritedProvider.gameObject.dropDownIndex]}');
+        'drop down built with value: ${widget.gameLogic.dropDownList[getIt<GameParameters>().dropDownIndex]}');
     return ListenableBuilder(
-      listenable: inheritedProvider.gameObject,
+      listenable: widget.gameLogic,
       builder: (BuildContext context, Widget? child) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,12 +37,12 @@ class _NumberOfDigitsOptionState extends State<NumberOfDigitsOption> {
                 elevation: 20,
                 onChanged: (String? newValue) {
                 if (newValue != null) {
-                  inheritedProvider.gameObject.dropDownPressed(newValue: newValue);
+                  widget.gameLogic.dropDownPressed(newValue: newValue);
                 }
               },
-                items: inheritedProvider.gameObject.mappingToList(),
-                value: inheritedProvider.gameObject
-                    .dropDownList[inheritedProvider.gameObject.dropDownIndex],
+                items: widget.gameLogic.mappingToList(),
+                value: widget.gameLogic
+                    .dropDownList[getIt<GameParameters>().dropDownIndex],
               ),
             ),
           ],

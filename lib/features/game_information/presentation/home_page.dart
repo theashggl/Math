@@ -3,7 +3,6 @@ import 'package:flutter_apps/features/game_information/presentation/widgets/app_
 import 'package:flutter_apps/features/game_information/presentation/widgets/body_home_page.dart';
 import 'package:flutter_apps/features/game_parameters/presentation/floating_action_button_home_page.dart';
 import 'package:flutter_apps/shared/game_information_logic.dart';
-import 'package:flutter_apps/shared/widgets/home_page_inherited_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   final String title;
@@ -48,13 +47,14 @@ class MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final GameLogic gameLogic=GameLogic();
     print('Check Scaffold calls');
     return Scaffold(
       appBar: AppBarOfScaffold(
         title: widget.title,
       ),
-      body: const GameInformationBody(),
-      floatingActionButton: const GameParameterDialog(),
+      body: GameInformationBody(gameLogic: gameLogic,),
+      floatingActionButton: GameParameterDialog(gameLogic: gameLogic,),
     );
   }
 }

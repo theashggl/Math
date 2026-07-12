@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_apps/service_locator.dart';
 import 'package:flutter_apps/shared/game_information_logic.dart';
-import 'package:flutter_apps/shared/widgets/home_page_inherited_widget.dart';
+import 'package:flutter_apps/shared/game_parameters.dart';
 
 class OperationSelectionOption extends StatefulWidget {
   final void Function(SelectedOperation) functionToPassIndexToParentWidget;
-  const OperationSelectionOption(
-      {super.key, required this.functionToPassIndexToParentWidget});
+  GameLogic gameLogic;
+  OperationSelectionOption(
+      {super.key, required this.functionToPassIndexToParentWidget,required this.gameLogic});
 
   @override
   State<OperationSelectionOption> createState() =>
@@ -16,8 +18,8 @@ class OperationSelectionOption extends StatefulWidget {
 class _OperationSelectionOptionState extends State<OperationSelectionOption> {
   @override
   Widget build(BuildContext context) {
-    final HomePageInheritedWidget inheritedProvider = HomePageInheritedWidget.of(context);
-    print('operation: ${inheritedProvider.gameObject.selectedOperation}');
+    // final HomePageInheritedWidget inheritedProvider = HomePageInheritedWidget.of(context);
+    print('operation: ${getIt<GameParameters>().selectedOperation} hash of gamelogic: ${widget.gameLogic.hashCode}');
     return Column(
       children: [
         const Text(
@@ -33,20 +35,20 @@ class _OperationSelectionOptionState extends State<OperationSelectionOption> {
             ToggleButtons(
                 constraints:
                     const BoxConstraints(minHeight: 70.0, minWidth: 70.0),
-                isSelected: inheritedProvider.gameObject.toggleButtonSelection,
+                isSelected: widget.gameLogic.toggleButtonSelection,
                 onPressed: (int indexOfSelected) {
-                  inheritedProvider.gameObject.toggleButtonSelection[inheritedProvider.gameObject.selectedOperation.index] = false;
+                  widget.gameLogic.toggleButtonSelection[getIt<GameParameters>().selectedOperation.index] = false;
                   setState(() {
-                    inheritedProvider.gameObject.toggleButtonSelection[indexOfSelected] = true;
+                    widget.gameLogic.toggleButtonSelection[indexOfSelected] = true;
                   });
-                  inheritedProvider.gameObject.selectedOperation = SelectedOperation.values[indexOfSelected];
-                  widget.functionToPassIndexToParentWidget(inheritedProvider.gameObject.selectedOperation);
-                  print('check for division selection ${inheritedProvider.gameObject.selectedOperation}');
+                  getIt<GameParameters>().selectedOperation = SelectedOperation.values[indexOfSelected];
+                  widget.functionToPassIndexToParentWidget(getIt<GameParameters>().selectedOperation);
+                  print('check for division selection ${getIt<GameParameters>().selectedOperation}');
                 },
                 children: [
                   for (int i = 0; i < 4; i++)
                     Text(
-                      inheritedProvider.gameObject.textsInOutlinedButton[i],
+                      widget.gameLogic.textsInOutlinedButton[i],
                       style: const TextStyle(fontSize: 50),
                     ),
                 ]),

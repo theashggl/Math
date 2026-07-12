@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_apps/features/game_numbers/presentation/number_display.dart';
+import 'package:flutter_apps/service_locator.dart';
 import 'package:flutter_apps/shared/entities/counter_event.dart';
+import 'package:flutter_apps/shared/game_parameters.dart';
 
 enum SelectedOperation { plus, minus, multiply, divide }
 
-//So far, since the logic is intertwined, this file will handle the logic for whole app unless needed otherwise.
 class GameLogic extends ChangeNotifier {
   num? answer;
-  int dropDownIndex = 0;
-  int operandCount = 2;
   bool textFieldEnabled = false;
   late String operationTextInHomePage = '+ (addition)';
   final List<String> _dropDownList = ['1', '2', '3', '4'];
@@ -16,61 +15,69 @@ class GameLogic extends ChangeNotifier {
   final List<bool> toggleButtonSelection = [true, false, false, false];
   final TextEditingController textEditingController = TextEditingController();
   final GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
-  SelectedOperation selectedOperation = SelectedOperation.plus;
+  // SelectedOperation selectedOperation = SelectedOperation.plus;
   List<String> get dropDownList => _dropDownList;
 
   GameLogic([this.answer = 0]);
 
   void operandCountChange(CounterEvent eventType) {
+    print('opearnd change');
     if (eventType is RandomEvent) {
       if (eventType.value > 0 && eventType.value <= 10) {
-        operandCount = eventType.value;
+        // getIt<GameParameters>().operandCount = eventType.value;
+        getIt<GameParameters>().notifyOperands(newValue: eventType.value);
       }
-    } else if (eventType is IncrementEvent && operandCount < 10) {
-      operandCount++;
+    } else if (eventType is IncrementEvent &&
+        getIt<GameParameters>().operandCount < 10) {
+      getIt<GameParameters>()
+          .notifyOperands(newValue: ++getIt<GameParameters>().operandCount);
     } else {
       if (eventType is DecrementEvent &&
-          operandCount > 2 &&
-          operandCount <= 10) {
-        operandCount--;
+          getIt<GameParameters>().operandCount > 2 &&
+          getIt<GameParameters>().operandCount <= 10) {
+        getIt<GameParameters>()
+            .notifyOperands(newValue: --getIt<GameParameters>().operandCount);
       }
     }
     notifyListeners();
   }
 
   void setOptionSelectionIndex(SelectedOperation enumValueOfSelectedOperation) {
-    selectedOperation = enumValueOfSelectedOperation;
-    switch (selectedOperation) {
+    getIt<GameParameters>()
+        .notifySelectedOperation(newValue: enumValueOfSelectedOperation);
+    switch (getIt<GameParameters>().selectedOperation) {
       case SelectedOperation.plus:
         {
-          operationTextInHomePage = '+ (addition)';
+          this.operationTextInHomePage = '+ (addition)';
           break;
         }
       case SelectedOperation.minus:
         {
-          operationTextInHomePage = '- (subtraction)';
+          this.operationTextInHomePage = '- (subtraction)';
           break;
         }
       case SelectedOperation.multiply:
         {
-          operationTextInHomePage = 'X (Multiplication)';
+          this.operationTextInHomePage = 'X (Multiplication)';
           break;
         }
       case SelectedOperation.divide:
         {
-          operationTextInHomePage = '÷ (division)';
+          this.operationTextInHomePage = '÷ (division)';
           break;
         }
     }
+    print('operation: $operationTextInHomePage');
     notifyListeners();
   }
 
   void dropDownPressed({required String newValue}) {
-    if(newValue.codeUnitAt(0)>=49&&newValue.codeUnitAt(0)<=52) {
-      dropDownIndex = int.parse(newValue) - 1;
+    if (newValue.codeUnitAt(0) >= 49 && newValue.codeUnitAt(0) <= 52) {
+      getIt<GameParameters>()
+          .notifyDropIndex(newValue: int.parse(newValue) - 1);
     }
     notifyListeners();
-    print('Drop down index changed: $dropDownIndex');
+    print('Drop down index changed: $getIt<GameParameters>().dropDownIndex');
   }
 
   List<DropdownMenuItem<String>> mappingToList() {
@@ -103,8 +110,7 @@ class GameLogic extends ChangeNotifier {
   }
 
 //Errors to show in the textFormField in the home page
-  String? validatorOfTextFormField(
-      {String? value}) {
+  String? validatorOfTextFormField({String? value}) {
     if (value == null || value.isEmpty) {
       if (textFieldEnabled) {
         return 'Please provide your input';
@@ -115,12 +121,11 @@ class GameLogic extends ChangeNotifier {
     return null;
   }
 
-  Future<bool> navigateToNumberDisplay(
-      Future<num?> Function() navigate) async {
+  Future<bool> navigateToNumberDisplay(Future<num?> Function() navigate) async {
     // Navigator.push returns a Future that completes after calling
     // Navigator.pop on the Selection Screen.
     textEditingController.clear();
-    textFieldEnabled=false;
+    textFieldEnabled = false;
     notifyListeners();
     print('text: ${textEditingController.text}');
     answer = await navigate().then((onValue) {
@@ -128,7 +133,7 @@ class GameLogic extends ChangeNotifier {
       textFieldEnabled = true;
       return onValue;
     });
-      notifyListeners();
+    notifyListeners();
     return true;
   }
 }

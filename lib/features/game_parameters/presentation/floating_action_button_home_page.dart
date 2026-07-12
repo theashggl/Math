@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_apps/features/game_parameters/presentation/partsOfFloatingActionButton/number_of_digits_option.dart';
 import 'package:flutter_apps/features/game_parameters/presentation/partsOfFloatingActionButton/number_of_operands.dart';
 import 'package:flutter_apps/features/game_parameters/presentation/partsOfFloatingActionButton/operation_selection_option.dart';
-import 'package:flutter_apps/shared/widgets/home_page_inherited_widget.dart';
+import 'package:flutter_apps/service_locator.dart';
+import 'package:flutter_apps/shared/game_information_logic.dart';
+import 'package:flutter_apps/shared/game_parameters.dart';
 
 class GameParameterDialog extends StatefulWidget {
-  const GameParameterDialog({super.key});
+  GameLogic gameLogic;
+  GameParameterDialog({super.key,required this.gameLogic});
 
   @override
   State<GameParameterDialog> createState() => _GameParameterDialogState();
@@ -14,20 +17,21 @@ class GameParameterDialog extends StatefulWidget {
 class _GameParameterDialogState extends State<GameParameterDialog> {
   @override
   Widget build(BuildContext context) {
-    final HomePageInheritedWidget inheritedProvider =
-        HomePageInheritedWidget.of(context);
+    GameLogic gameLogic=GameLogic();
+    // final HomePageInheritedWidget inheritedProvider =
+    //     HomePageInheritedWidget.of(context);
     return FloatingActionButton(
       key: const ValueKey('HomePageFloatingActionButton'),
       onPressed: () {
         setState(() {
-          inheritedProvider.gameObject.textFieldEnabled = false;
-          inheritedProvider.gameObject.textEditingController.clear();
+          gameLogic.textFieldEnabled = false;
+          gameLogic.textEditingController.clear();
         });
         showDialog(
           context: context,
           builder: (BuildContext builderContext) {
             print(
-                'checking for null: ${inheritedProvider.gameObject.dropDownIndex}');
+                'checking for null: ${getIt<GameParameters>().dropDownIndex}');
             return Center(
               child: Card(
                 key: const ValueKey('CardForGameParameters'),
@@ -36,18 +40,18 @@ class _GameParameterDialogState extends State<GameParameterDialog> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const NumberOfOccurrencesOption(),
+                    NumberOfOccurrencesOption(gameLogic: gameLogic,),
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 100,
                     ),
                     OperationSelectionOption(
                       functionToPassIndexToParentWidget:
-                          inheritedProvider.gameObject.setOptionSelectionIndex,
+                          gameLogic.setOptionSelectionIndex, gameLogic: widget.gameLogic,
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 50,
                     ),
-                    const NumberOfDigitsOption(),
+                    NumberOfDigitsOption(gameLogic: widget.gameLogic),
                     ElevatedButton(
                       key: const ValueKey('SubmitGameParameters'),
                       style: const ButtonStyle(
@@ -55,11 +59,11 @@ class _GameParameterDialogState extends State<GameParameterDialog> {
                       ),
                       child: const Text('Submit'),
                       onPressed: () {
-                        // inheritedProvider.gameObject.submitGameState(
+                        // getIt<GameLogic>().submitGameState(
                         //   counterSnapshot,
                         // );
                         print(
-                            'The enum is ${inheritedProvider.gameObject.selectedOperation}');
+                            'The enum is ${getIt<GameParameters>().selectedOperation}');
                         print('Mounted or not: ${context.mounted}');
                         Navigator.of(builderContext).pop();
                       },
